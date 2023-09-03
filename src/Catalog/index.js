@@ -16,6 +16,13 @@ async function getCatalog(req) {
     return objectsForPage;
 }
 
+async function getProductById(req) {
+    const productId = req.params.productId;
+    const imageUrl = `${req.protocol}://${req.get('host')}/images/`;
+    const result = data.getProductById(productId, imageUrl);
+    return result;
+}
+
 async function getProductDetail(req) {
     const productId = req.params.productId;
     const imageUrl = `${req.protocol}://${req.get('host')}/images/`;
@@ -23,7 +30,16 @@ async function getProductDetail(req) {
     return result;
 }
 
+async function getProductsBySearch(req) {
+    const value = req.params.text;
+    const imageUrl = `${req.protocol}://${req.get('host')}/images/`;
+    const result = data.getProductsBySearch(value, imageUrl);
+    return result;
+}
+
 module.exports = {
     getCatalog,
-    getProductDetail
+    getProductDetail,
+    getProductsBySearch,
+    getProductById
 };

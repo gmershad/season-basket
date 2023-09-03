@@ -22,7 +22,17 @@ app.get("/public/api/catalog", async (req, res) => {
 });
 
 app.get("/public/api/catalog/:productId", async (req, res) => {
+    const result = await catalog.getProductById(req);
+    res.status(200).json(result);
+});
+
+app.get("/public/api/catalog/detail/:productId", async (req, res) => {
     const result = await catalog.getProductDetail(req);
+    res.status(200).json(result);
+});
+
+app.get("/public/api/catalog/search/:text", async (req, res) => {
+    const result = await catalog.getProductsBySearch(req);
     res.status(200).json(result);
 });
 

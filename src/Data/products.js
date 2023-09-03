@@ -1164,6 +1164,15 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
         }
     ];
 
+    if (startIndex < 0) {
+        const result = {
+            data: data,
+            totalPages: -1,
+            total: -1
+        };
+        return result;
+    }
+
     let productData = data;
     if (seasonId > 0) {
         productData = filterObjectsBySeasonValue(seasonId, productData);
@@ -1189,7 +1198,206 @@ function filterObjectsBySeasonValue(seasonId, data) {
     });
 }
 
+function escapeRegexCharacters(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+async function getProductsBySearch(value, imageUrl) {
+
+    const data = [
+        {
+            "ProductId": "P001",
+            "Name": "Apple",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}apple.jpg`,
+        },
+        {
+            "ProductId": "P002",
+            "Name": "Apricot",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}apricot.jpg`,
+        },
+        {
+            "ProductId": "P003",
+            "Name": "Avacado",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}avacado.jpg`,
+        },
+        {
+            "ProductId": "P004",
+            "Name": "Barberry",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}barberry.jpg`
+        },
+        {
+            "ProductId": "P005",
+            "Name": "Black Currant",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}black_currant.jpg`,
+        },
+        {
+            "ProductId": "P006",
+            "Name": "Black Berries",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}blackberries.jpg`,
+        },
+        {
+            "ProductId": "P007",
+            "Name": "Blue Berry",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}blueberry.jpg`,
+        },
+        {
+            "ProductId": "P008",
+            "Name": "Cucumber",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}cucumber.jpg`,
+        },
+        {
+            "ProductId": "P009",
+            "Name": "Custard Apple",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}custard_apple.jpg`,
+        },
+        {
+            "ProductId": "P010",
+            "Name": "Grapes",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}grapes.jpg`
+        },
+        {
+            "ProductId": "P011",
+            "Name": "Guava",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}guava.jpg`,
+        },
+        {
+            "ProductId": "P012",
+            "CountryId": "C01",
+            "Name": "Jackfruit",
+            "ImgUrl": `${imageUrl}jackfruit.jpg`
+        },
+        {
+            "ProductId": "P013",
+            "Name": "Kiwi",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}kiwi.jpg`,
+        },
+        {
+            "ProductId": "P014",
+            "Name": "Lychee",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}lychee.jpg`,
+        },
+        {
+            "ProductId": "P015",
+            "Name": "Mango",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}mango.jpg`,
+        },
+        {
+            "ProductId": "P016",
+            "Name": "Orange",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}oranges.jpg`,
+        },
+        {
+            "ProductId": "P017",
+            "Name": "Papaya",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}papaya.jpg`,
+        },
+        {
+            "ProductId": "P018",
+            "Name": "Peach",
+            "Type": "Fruit",
+        },
+        {
+            "ProductId": "P019",
+            "Name": "Pear",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}pear.jpg`
+        },
+        {
+            "ProductId": "P020",
+            "Name": "Pineapple",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}pineapple.jpg`
+        },
+        {
+            "ProductId": "P022",
+            "Name": "Watermelon",
+            "Type": "Fruit",
+            "ImgUrl": `${imageUrl}watermelon.jpg`,
+        },
+        {
+            "ProductId": "P023",
+            "Name": "Spinach",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}spinach.jpg`,
+        },
+        {
+            "ProductId": "P024",
+            "Name": "Cauliflower",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}cauliflower.jpg`
+        },
+        {
+            "ProductId": "P025",
+            "Name": "Bitter Gourd",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}bittergaurd.jpg`,
+        },
+        {
+            "ProductId": "P026",
+            "Name": "Snake Gourd",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}snakegourd.jpg`
+        },
+        {
+            "ProductId": "P028",
+            "Name": "Pumpkin",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}pumpkin.jpg`,
+        },
+        {
+            "ProductId": "P029",
+            "Name": "Brinjal",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}brinjal.jpg`,
+        },
+        {
+            "ProductId": "P030",
+            "Name": "Cabbage",
+            "Type": "Vegetable",
+            "ImgUrl": `${imageUrl}cabbage.jpg`,
+        }
+    ];
+
+    const escapedValue = escapeRegexCharacters(value.trim());
+
+    if (escapedValue === '') {
+        return [];
+    }
+
+    const regex = new RegExp('^' + escapedValue, 'i');
+    return data.filter(language => regex.test(language.Name));
+}
+
+async function getProductById(productId, imageUrl) {
+    const data = getProductData(imageUrl, -1, -1, -1, -1);
+    const product = data.data.find((item) => item.ProductId === productId);
+    const result = {
+        data: product,
+        totalPages: 1,
+        total: 1
+    };
+    return result;
+}
+
 
 module.exports = {
     getProductData,
+    getProductsBySearch,
+    getProductById
 };
