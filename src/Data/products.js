@@ -8,7 +8,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}apple.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Fibre", "Vitamin C", "Antioxidants", "Potassium"],
+                "Good": ["Fiber-Rich", "Vitamin C Source", "Low in Calories", "Antioxidants", "Heart-Healthy", "Digestive Health", "Weight Management", "Bone Health (Boron)", "Natural Sweetness", "Hydration", "Skin Health"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -48,7 +48,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}apricot.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Fibre", "Vitamin C", "Iron", "Relieves Ashthma", "Relieves Constipation"],
+                "Good": ["Rich in Vitamin A", "High in Vitamin C", "Fiber-Rich", "Antioxidants", "Heart-Healthy", "Digestive Health", "Bone Health (Vitamin K)", "Low in Calories", "Natural Sweetness", "Skin Health", "Eye Health"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -88,7 +88,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}avacado.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Vitamin K", "Gut Health", "Folate", "Healthy Pregnancy "],
+                "Good": ["Healthy Fats (Monounsaturated)", "Rich in Fiber", "Vitamin K Source", "Potassium-Rich", "Antioxidants (Vitamin E, Lutein)", "Heart-Healthy", "Skin Health", "Eye Health", "Anti-Inflammatory", "Digestive Health", "Weight Management"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -128,7 +128,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}barberry.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Vitamin C", "Dental Health", "Antioxidants", "Acne", "Treats Diarrhea"],
+                "Good": ["Rich in Vitamin C", "Antioxidant-Rich", "Dietary Fiber Source", "Immune Support", "Anti-Inflammatory", "Heart-Healthy", "Digestive Health", "Mineral Content (Iron, Potassium)", "Low in Calories", "Eye Health", "Natural Tartness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -168,7 +168,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}black_currant.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Treats Glaucoma", "Vitamin C", "Antioxidants"],
+                "Good": ["Rich in Vitamin C", "High in Dietary Fiber", "Antioxidant-Rich (Anthocyanins)", "Immune Support", "Heart-Healthy", "Anti-Inflammatory", "Digestive Health", "Low in Calories", "Eye Health", "Brain Health", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -208,7 +208,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}blackberries.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Vitamin C", "Vitamin K", "Manganese", "Oral Health"],
+                "Good": ["Antioxidant-Rich", "High in Dietary Fiber", "Vitamin C Source", "Heart-Healthy", "Brain Health", "Anti-Inflammatory", "Digestive Health", "Low in Calories", "Skin Health", "Eye Health", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -248,7 +248,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}blueberry.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Vitamin C", "Vitamin K", "Antioxidants"],
+                "Good": ["Antioxidant Powerhouse", "Rich in Vitamin C", "High in Dietary Fiber", "Heart-Healthy", "Brain Health", "Anti-Inflammatory", "Digestive Health", "Low in Calories", "Skin Health", "Eye Health", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -288,7 +288,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}cucumber.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Fibre", "Rich in Minerals", "Joint Pain", "Vitamin K"],
+                "Good": ["Hydration", "Low in Calories", "Fiber-Rich", "Vitamin K Source", "Antioxidants", "Digestive Health", "Skin Health", "Blood Sugar Control", "Weight Management", "Natural Refreshment"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -328,8 +328,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}custard_apple.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Fibre", "Anti-Oxidant", "Prevents Stomach Ulcer", "Facilitates Hormonal Balance", "Anemia",
-                    "Promotes Collgen Development"],
+                "Good": ["Vitamin C Source", "Rich in Dietary Fiber", "Antioxidants", "Digestive Health", "Immune Support", "Heart-Healthy", "Bone Health (Calcium)", "Low in Calories", "Natural Sweetness", "Healthy Fats (Oleic Acid)"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -369,8 +368,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}grapes.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Vitamin E", "Vitamin C", "Lung Support", "Migrane Relief", "Cures Asthama",
-                    "Prevents Blood Clot", "Prevents Cavities", "Anti-Aging"],
+                "Good": ["Antioxidant-Rich", "Resveratrol Content", "Vitamin C Source", "Fiber-Rich", "Heart-Healthy", "Immune Support", "Digestive Health", "Skin Health", "Eye Health", "Low in Calories", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -410,7 +408,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}guava.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Vitamin C", "Digdiabetes Managementestion", "Fights Flu", "Relieves Menstrual Cramps"],
+                "Good": ["Rich in Vitamin C", "Fiber-Rich", "Antioxidants (Vitamin A, Flavonoids)", "Digestive Health", "Immune Support", "Heart-Healthy", "Skin Health", "Eye Health", "Low in Calories", "Natural Sweetness", "Mineral Content (Potassium)"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -450,7 +448,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}jackfruit.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Relieves Constipation", "Helps in Ulcers", "Strengthens Bones"],
+                "Good": ["Rich in Dietary Fiber", "Vitamin-Rich (C, B6)", "Mineral Content (Potassium)", "Low in Calories", "Antioxidants", "Digestive Health", "Immune Support", "Heart-Healthy", "Energy Boost", "Low in Fat", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -490,7 +488,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}kiwi.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["High in Vitamin C", "Rich in Vitamin K", "Fiber-Rich", "Antioxidants (Vitamin E, Flavonoids)", "Heart-Healthy", "Digestive Health", "Immune Support", "Skin Health", "Eye Health", "Low in Calories", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -530,7 +528,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}lychee.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Vitamin C Source", "Antioxidants (Flavonoids)", "Fiber Content", "Low in Calories", "Heart-Healthy", "Digestive Health", "Immune Support", "Skin Health", "Eye Health", "Hydration", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -570,7 +568,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}mango.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Rich in Vitamin C", "High in Vitamin A (Beta-Carotene)", "Antioxidants", "Fiber-Rich", "Digestive Health", "Immune Support", "Skin Health", "Eye Health", "Low in Calories", "Natural Sweetness", "Bone Health (Vitamin K)"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -610,7 +608,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}oranges.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["High in Vitamin C", "Rich in Fiber", "Antioxidants", "Heart-Healthy", "Immune Support", "Digestive Health", "Skin Health", "Hydration", "Low in Calories", "Natural Sweetness", "Bone Health (Calcium)"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -650,7 +648,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}papaya.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Rich in Vitamin C", "High in Vitamin A (Beta-Carotene)", "Digestive Enzymes (Papain)", "Fiber-Rich", "Antioxidants", "Heart-Healthy", "Immune Support", "Skin Health", "Eye Health", "Anti-Inflammatory", "Low in Calories"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -690,7 +688,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}peach.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Vitamin C Source", "Vitamin A Content", "Fiber-Rich", "Low-Calorie", "Antioxidants", "Heart-Healthy", "Digestive Health", "Skin Health", "Hydration", "Natural Sweetness", "Bone Health (Vitamin K)"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -730,7 +728,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}pear.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Fiber-Rich", "Vitamin C Source", "Mineral Content (Potassium)", "Low-Calorie", "Digestive Health", "Heart-Healthy", "Antioxidants", "Immune Support", "Hydration", "Natural Sweetness", "Bone Health (Vitamin K)"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -770,7 +768,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}pineapple.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Vitamin C Boost", "Digestive Enzymes (Bromelain)", "Antioxidants", "Anti-Inflammatory", "Immune Support", "Bone Health (Manganese)", "Eye Health (Vitamin A)", "Hydration", "Low in Calories", "Fiber-Rich", "Delicious Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -810,7 +808,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}pomegranate.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Rich in Antioxidants", "High in Vitamin C", "Heart-Healthy", "Anti-Inflammatory", "Digestive Health", "Cancer Prevention", "Blood Pressure Regulation", "Skin Health", "Joint Health", "Immune Support", "Natural Sweetness"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -850,7 +848,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}watermelon.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Hydration", "Low-Calorie", "High Water Content", "Vitamin-Rich (A, C)", "Antioxidants", "Heart-Healthy", "Digestive Aid", "Skin Health", "Eye Health", "Anti-Inflammatory", "Natural Electrolytes"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -890,7 +888,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}spinach.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Nutrient-Dense", "Rich in Iron", "High in Vitamin K", "Antioxidant-Rich", "Folate Source", "Heart-Healthy", "Bone Health", "Digestive Health", "Anti-Inflammatory", "Eye Health", "Weight Management", "Versatile Cooking"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -930,7 +928,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}cauliflower.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Low-Calorie", "Fiber-Rich", "Vitamin-Packed (C, K, B6)", "Mineral-Rich (Potassium, Magnesium)", "Antioxidants", "Digestive Health", "Immune Support", "Bone Health", "Anti-Inflammatory", "Cancer Prevention", "Heart-Healthy", "Versatile Cooking"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -970,7 +968,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}bittergaurd.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Low-Calorie", "Rich in Dietary Fiber", "Vitamin-Rich (C, A)", "Mineral-Packed (Iron, Potassium)", "Antioxidants", "Blood Sugar Control", "Digestive Health", "Heart-Healthy", "Immune Support", "Skin Health", "Weight Management", "Detoxification"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -1010,7 +1008,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}snakegourd.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Low-Calorie", "Fiber-Rich", "Vitamin-Rich (A, C)", "Mineral-Packed (Iron, Calcium)", "Antioxidants", "Digestive Health", "Weight Management", "Blood Sugar Control", "Immune Support", "Hydration", "Detoxification"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -1050,7 +1048,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}pumpkin.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Fiber-Rich", "Vitamin-Packed (A, C, E)", "Mineral-Rich (Potassium, Magnesium)", "Low-Calorie", "Antioxidants", "Heart-Healthy", "Digestive Health", "Immune Support", "Eye Health", "Skin Health", "Weight Management", "Versatile Cooking"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -1090,7 +1088,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}brinjal.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Fiber-Rich", "Antioxidants", "Heart-Healthy", "Weight-Friendly", "Blood Sugar Control", "Digestive Health", "Cancer Prevention", "Eye Health", "Versatile Ingredient"],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
@@ -1130,7 +1128,9 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             "ImgUrl": `${imageUrl}cabbage.jpg`,
             "Nutrients": [10],
             "Health": {
-                "Good": ["Heart", "Digestion"],
+                "Good": ["Heart Health", "Digestive Health", "Rich in Vitamins (C, K, B6)",
+                    "Antioxidants", "Low in Calories", "Cancer Risk Reduction"
+                ],
                 "Bad": {
                     "diseaseId": ["D001"]
                 }
