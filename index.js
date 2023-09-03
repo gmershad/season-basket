@@ -21,6 +21,12 @@ app.get("/public/api/catalog", async (req, res) => {
     res.json(data);
 });
 
+app.get("/public/api/catalog/:productId", async (req, res) => {
+    const result = await catalog.getProductDetail(req);
+    res.status(200).json(result);
+});
+
+
 app.use(errorHandler);
 utils.hc(app);
 utils.start(app, logger, 8080);
