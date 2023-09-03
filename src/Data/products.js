@@ -1041,7 +1041,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             }
         },
         {
-            "ProductId": "P028",
+            "ProductId": "P027",
             "CountryId": "C01",
             "Name": "Pumpkin",
             "Type": "Vegetable",
@@ -1081,7 +1081,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             }
         },
         {
-            "ProductId": "P029",
+            "ProductId": "P028",
             "CountryId": "C01",
             "Name": "Brinjal",
             "Type": "Vegetable",
@@ -1121,7 +1121,7 @@ const getProductData = (imageUrl, startIndex, endIndex, pageSize, seasonId) => {
             }
         },
         {
-            "ProductId": "P030",
+            "ProductId": "P029",
             "CountryId": "C01",
             "Name": "Cabbage",
             "Type": "Vegetable",
