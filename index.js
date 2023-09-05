@@ -1,42 +1,13 @@
-const logger = require("lib-logger");
-const express = require("express");
-const utils = require("expressjs-utils");
-const { errorHandler } = require("./src/utils");
-const catalog = require("./src/Catalog")
-const path = require('path');
-const cors = require('cors');
+const express = require('express');
 
-const app = express()
-app.use(cors());
+const app = express();
 
-app.use('/images', express.static(path.join(__dirname, 'src', 'Data', 'Images')));
+app.use(express.json());
 
-app.get('/', function (req, res) {
-    res.send(`Welcome to Season Basket Integration`);
+app.use('/', (req, res, next) => {
+    return res.status(200).json("Welcome to Season Basket")
 })
 
-
-app.get("/public/api/catalog", async (req, res) => {
-    const data = await catalog.getCatalog(req);
-    res.json(data);
-});
-
-app.get("/public/api/catalog/:productId", async (req, res) => {
-    const result = await catalog.getProductById(req);
-    res.status(200).json(result);
-});
-
-app.get("/public/api/catalog/detail/:productId", async (req, res) => {
-    const result = await catalog.getProductDetail(req);
-    res.status(200).json(result);
-});
-
-app.get("/public/api/catalog/search/:text", async (req, res) => {
-    const result = await catalog.getProductsBySearch(req);
-    res.status(200).json(result);
-});
-
-
-app.use(errorHandler);
-utils.hc(app);
-utils.start(app, logger, 8080);
+app.listen(8080, () => {
+    console.log('Season Basket Catalog is Listening to Port 8080')
+})
