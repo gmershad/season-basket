@@ -29,6 +29,7 @@ class ProductController {
         }
     }
 
+
     async updateProductById(req, res) {
         try {
             const productId = req.params.productId;
@@ -57,6 +58,21 @@ class ProductController {
         } catch (error) {
             console.error('Error deleting product:', error);
             res.status(500).json({ error: 'Unable to delete product' });
+        }
+    }
+
+    async getProductDetails(req, res) {
+        try {
+            const productId = req.params.productId;
+            const product = await this.productService.getProductDetails(productId);
+            if (!product) {
+                res.status(404).json({ error: 'Product not found' });
+            } else {
+                res.json(product);
+            }
+        } catch (error) {
+            console.error('Error retrieving product:', error);
+            res.status(500).json({ error: 'Unable to retrieve product' });
         }
     }
 }

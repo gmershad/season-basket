@@ -1,6 +1,7 @@
 class ProductService {
-    constructor(productRepository) {
+    constructor(productRepository, productDetailAggregate) {
         this.productRepository = productRepository;
+        this.productDetailAggregate = productDetailAggregate;
     }
 
     async createProduct(productData) {
@@ -34,6 +35,15 @@ class ProductService {
         try {
             const deletedCount = await this.productRepository.deleteProductById(productId);
             return deletedCount;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getProductDetails(productId) {
+        try {
+            const product = await this.productDetailAggregate.getProductDetails(productId);
+            return product;
         } catch (error) {
             throw error;
         }
