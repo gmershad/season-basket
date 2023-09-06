@@ -1,7 +1,6 @@
 const State = require('../models/state');
 
 class StateRepository {
-
     async createState(stateData) {
         try {
             const newState = await State.create(stateData);

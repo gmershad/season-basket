@@ -29,6 +29,8 @@
     "should": "^13.2.3",
     "snazzy": "^9.0.0",
     "standard": "^17.1.0",
-    "supertest": "^6.3.3"
+    "supertest": "^6.3.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   }
 }

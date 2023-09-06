@@ -1,8 +1,7 @@
 const express = require("express");
+const router = express.Router();
 
-function createStateRoutes(stateController) {
-    const router = express.Router();
-
+module.exports = (stateController) => {
     router.post("/states", stateController.createState.bind(stateController));
     router.get("/states", stateController.getAllStates.bind(stateController));
     router.get("/states/:id", stateController.getStateById.bind(stateController));
@@ -10,9 +9,5 @@ function createStateRoutes(stateController) {
     router.delete("/states/:id", stateController.deleteState.bind(stateController));
 
     return router;
-}
-
-module.exports = (stateController) => {
-    const stateRoutes = createStateRoutes(stateController);
-    return stateRoutes;
 };
+
