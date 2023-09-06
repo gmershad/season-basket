@@ -16,9 +16,7 @@ const createProductRepository = require("./database/repository/ProductRepository
 
 const createProductNutritionController = require('./controllers/ProductNutritionController');
 const createProductNutritionService = require('./services/ProductNutritionService');
-const createProductNutritionRepository = require('./database/repository/ProductNutritionRepository');
-
-
+const createProductNutritionRepository = require("./database/repository/productNutritionRepository");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./swagger-config");
@@ -35,14 +33,17 @@ module.exports = async (app) => {
     const stateService = new createStateService(stateRepository);
     const productRepository = new createProductRepository();
     const productService = new createProductService(productRepository);
+
+
     const productNutritionRepository = new createProductNutritionRepository();
     const productNutritionService = new createProductNutritionService(productNutritionRepository);
+
 
     const controllers = {
         countryController: new createCountryController(countryService),
         stateController: new createStateController(stateService),
         productController: new createProductController(productService),
-        productNutritionController: new createProductNutritionController(productNutritionService),
+        productNutritionController: new createProductNutritionController(productNutritionService)
     };
 
     const combinedRouter = require('./routes')(controllers);

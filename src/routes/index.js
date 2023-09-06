@@ -4,7 +4,7 @@ const router = express.Router();
 const countryRoutes = require('./countryRoutes');
 const stateRoutes = require('./stateRoutes');
 const productRoutes = require('./productRoutes');
-const productNutritionRoutes = require('./productNutritionRoutes');
+const productNutritionRoutes = require("./productNutritionRoutes");
 
 module.exports = (controllers) => {
     router.use('/api', countryRoutes(controllers.countryController));

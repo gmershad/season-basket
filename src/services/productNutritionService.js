@@ -1,13 +1,12 @@
 class ProductNutritionService {
-
     constructor(productNutritionRepository) {
         this.productNutritionRepository = productNutritionRepository;
     }
 
     async createProductNutrition(productNutritionData) {
         try {
-            const productNutrition = await this.productNutritionRepository.createProductNutrition(productNutritionData);
-            return productNutrition;
+            const newProductNutrition = await this.productNutritionRepository.createProductNutrition(productNutritionData);
+            return newProductNutrition;
         } catch (error) {
             throw error;
         }

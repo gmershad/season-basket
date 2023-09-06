@@ -1,17 +1,17 @@
-const { ProductNutrition, Product } = require('../models');
+const { ProductNutrition } = require('../models');
 
 class ProductNutritionRepository {
 
-    static async createProductNutrition(productNutritionData) {
+    async createProductNutrition(productNutritionData) {
         try {
-            const productNutrition = await ProductNutrition.create(productNutritionData);
-            return productNutrition;
+            const newProductNutrition = await ProductNutrition.create(productNutritionData);
+            return newProductNutrition;
         } catch (error) {
             throw error;
         }
     }
 
-    static async findProductNutritionByProductId(productId) {
+    async findProductNutritionByProductId(productId) {
         try {
             const productNutritionEntries = await ProductNutrition.findAll({
                 where: { ProductId: productId },
@@ -22,7 +22,7 @@ class ProductNutritionRepository {
         }
     }
 
-    static async updateProductNutritionByNutritionId(nutritionId, updates) {
+    async updateProductNutritionByNutritionId(nutritionId, updates) {
         try {
             const [updatedCount, updatedProductNutrition] = await ProductNutrition.update(updates, {
                 where: { NutritionId: nutritionId },
@@ -34,7 +34,7 @@ class ProductNutritionRepository {
         }
     }
 
-    static async deleteProductNutritionByNutritionId(nutritionId) {
+    async deleteProductNutritionByNutritionId(nutritionId) {
         try {
             const deletedCount = await ProductNutrition.destroy({
                 where: { NutritionId: nutritionId },
