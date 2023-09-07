@@ -4,15 +4,16 @@ const Country = require('./country');
 
 const State = sequelize.define('State', {
     StateId: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     },
     CountryId: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: Country,
-            key: 'CountryId',
+            key: 'country_id',
         },
     },
     Name: {
@@ -36,8 +37,9 @@ const State = sequelize.define('State', {
         onUpdate: DataTypes.NOW,
     },
 }, {
-    tableName: 'states',
+    tableName: 'state',
     timestamps: false,
+    underscored: true,
 });
 
 module.exports = State;

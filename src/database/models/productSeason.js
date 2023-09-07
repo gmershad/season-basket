@@ -11,16 +11,28 @@ const ProductSeason = sequelize.define('ProductSeason', {
         autoIncrement: true,
     },
     ProductId: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: Product,
+            key: 'product_id',
+        },
     },
     SeasonId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: Season,
+            key: 'season_id',
+        },
     },
     StateId: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: State,
+            key: 'state_id',
+        },
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -41,16 +53,5 @@ const ProductSeason = sequelize.define('ProductSeason', {
     underscored: true,
 });
 
-ProductSeason.belongsTo(Product, {
-    foreignKey: 'ProductId',
-});
-
-ProductSeason.belongsTo(Season, {
-    foreignKey: 'SeasonId',
-});
-
-ProductSeason.belongsTo(State, {
-    foreignKey: 'StateId',
-});
 
 module.exports = ProductSeason;

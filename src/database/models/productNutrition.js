@@ -52,7 +52,7 @@ const ProductNutrition = sequelize.define('ProductNutrition', {
 });
 
 ProductNutrition.belongsTo(Product, {
-    foreignKey: 'ProductId',
+    foreignKey: 'product_id',
 });
 
 module.exports = ProductNutrition;

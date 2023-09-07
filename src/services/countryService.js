@@ -4,38 +4,43 @@ class CountryService {
     }
 
     async createCountry(countryData) {
-        try {
-            const country = await this.countryRepository.createCountry(countryData);
-            return country;
-        } catch (error) {
-            throw new Error('Error creating country: ' + error.message);
-        }
+        return this.countryRepository.createCountry(countryData);
     }
 
     async getCountryById(countryId) {
-        try {
-            const country = await this.countryRepository.getCountryById(countryId);
-            return country;
-        } catch (error) {
-            throw new Error('Error getting country by ID: ' + error.message);
-        }
+        return this.countryRepository.getCountryById(countryId);
     }
 
     async updateCountry(countryId, countryData) {
-        try {
-            const country = await this.countryRepository.updateCountry(countryId, countryData);
-            return country;
-        } catch (error) {
-            throw new Error('Error updating country: ' + error.message);
-        }
+        return this.countryRepository.updateCountry(countryId, countryData);
     }
 
     async deleteCountry(countryId) {
-        try {
-            await this.countryRepository.deleteCountry(countryId);
-        } catch (error) {
-            throw new Error('Error deleting country: ' + error.message);
-        }
+        await this.countryRepository.deleteCountry(countryId);
+    }
+
+    async getAllCountries() {
+        return this.countryRepository.getAllCountries();
+    }
+
+    async createState(stateData) {
+        return this.countryRepository.createState(stateData);
+    }
+
+    async getAllStatesByCountry() {
+        return this.countryRepository.getAllStatesByCountry();
+    }
+
+    async getStateById(stateId) {
+        return this.countryRepository.getStateById(stateId);
+    }
+
+    async updateState(stateId, stateData) {
+        return this.countryRepository.updateState(stateId, stateData);
+    }
+
+    async deleteState(stateId) {
+        return this.countryRepository.deleteState(stateId);
     }
 }
 

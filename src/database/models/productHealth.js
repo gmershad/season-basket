@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../database');
-const Disease = require('./disease');
 
 const ProductHealth = sequelize.define('ProductHealth', {
     ProductHealthId: {
@@ -12,21 +11,14 @@ const ProductHealth = sequelize.define('ProductHealth', {
         type: DataTypes.STRING(10),
         allowNull: false,
     },
-    AttributeType: {
-        type: DataTypes.ENUM('Good', 'Bad', 'AllergyInfo'),
-        allowNull: false,
+    Good: {
+        type: DataTypes.JSON,
     },
-    AttributeName: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
+    Bad: {
+        type: DataTypes.JSON,
     },
     AllergyInfo: {
-        type: DataTypes.STRING(255),
-        allowNull: true,
-    },
-    DiseaseId: {
-        type: DataTypes.STRING(10),
-        allowNull: true,
+        type: DataTypes.JSON,
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -46,7 +38,5 @@ const ProductHealth = sequelize.define('ProductHealth', {
     timestamps: false,
     underscored: true,
 });
-
-ProductHealth.belongsTo(Disease, { foreignKey: 'DiseaseId' });
 
 module.exports = ProductHealth;
