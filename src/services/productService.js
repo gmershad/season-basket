@@ -48,6 +48,15 @@ class ProductService {
             throw error;
         }
     }
+
+    async getPaginatedProductDetails(pageNumber, pageSize) {
+        try {
+            const products = await this.productDetailAggregate.getPaginatedProductDetails(pageNumber, pageSize);
+            return products;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = ProductService;

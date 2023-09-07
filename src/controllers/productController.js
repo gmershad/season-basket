@@ -75,6 +75,22 @@ class ProductController {
             res.status(500).json({ error: 'Unable to retrieve product' });
         }
     }
+
+    async getPaginatedProductDetails(req, res) {
+        try {
+            const pageNumber = parseInt(req.params.pageNumber);
+            const pageSize = parseInt(req.params.pageSize);
+            const products = await this.productService.getPaginatedProductDetails(pageNumber, pageSize);
+            if (!products) {
+                res.status(404).json({ error: 'Products not found' });
+            } else {
+                res.json(products);
+            }
+        } catch (error) {
+            console.error('Error retrieving product:', error);
+            res.status(500).json({ error: 'Unable to retrieve product' });
+        }
+    }
 }
 
 module.exports = ProductController;

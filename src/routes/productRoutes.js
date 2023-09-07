@@ -7,6 +7,7 @@ module.exports = (productController) => {
     router.put('/products/:productId', productController.updateProductById.bind(productController));
     router.delete('/product/:productId', productController.deleteProductById.bind(productController));
     router.get('/product/:productId', productController.getProductDetails.bind(productController));
+    router.get('/product/:pageNumber/:pageSize', productController.getPaginatedProductDetails.bind(productController));
     return router;
 };
 
