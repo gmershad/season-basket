@@ -9,11 +9,13 @@ module.exports = (productController) => {
     router.get('/product/:productId', productController.getProductDetails.bind(productController));
 
     router.post('/product/season', productController.createProductSeason.bind(productController));
-    router.get('/product/season', productController.getAllProductSeasons.bind(productController));
-    router.get('/product/season/:productSeasonId', productController.getProductSeasonById.bind(productController));
+    router.get('/product/:productId/season', productController.getProductSeasonByProductId.bind(productController));
+    router.put('/product/season/:productSeasonId', productController.updateProductSeason.bind(productController));
+    router.delete('/product/season/:productSeasonId', productController.deleteProductSeason.bind(productController));
 
     router.post('/product/nutrition', productController.createProductNutrition.bind(productController));
-    router.get('/product/:productIdnutrition', productController.findProductNutritionByProductId.bind(productController));
+    router.get('/product/:productId/nutrition', productController.getProductNutritionByProductId.bind(productController));
+
     router.put('/product/nutrition/:nutritionId', productController.updateProductNutritionByNutritionId.bind(productController));
     router.delete('/product/nutrition/:nutritionId', productController.deleteProductNutritionByNutritionId.bind(productController));
 

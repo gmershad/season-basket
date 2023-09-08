@@ -87,38 +87,45 @@ class ProductController {
         }
     }
 
-    async getAllProductSeasons(req, res) {
+    async getProductSeasonByProductId(req, res) {
         try {
-            const productSeasons = await this.productService.getAllProductSeasons();
-            res.status(200).json(productSeasons);
+            const productId = req.params.productId;
+            const productSeason = await this.productService.getProductSeasonByProductId(productId);
+            res.status(201).json(productSeason);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     }
 
-    async getProductSeasonById(req, res) {
+    async updateProductSeason(req, res) {
         try {
-            const productSeasonId = req.params.productSeasonId;
-            const productSeason = await this.productService.getProductSeasonById(productSeasonId);
-            res.status(200).json(productSeason);
-        } catch (error) {
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
-    }
-
-    async getPaginatedProductDetails(req, res) {
-        try {
-            const pageNumber = parseInt(req.params.pageNumber);
-            const pageSize = parseInt(req.params.pageSize);
-            const products = await this.productService.getPaginatedProductDetails(pageNumber, pageSize);
-            if (!products) {
-                res.status(404).json({ error: 'Products not found' });
+            const productSeasonId = parseInt(req.params.productSeasonId);
+            const productSeasonData = req.body;
+            const updated = await this.productService.updateProductSeason(productSeasonId, productSeasonData);
+            if (updated) {
+                res.status(200).json(updated);
             } else {
-                res.json(products);
+                res.status(404).json({ error: "Product not found" });
             }
         } catch (error) {
-            console.error('Error retrieving product:', error);
-            res.status(500).json({ error: 'Unable to retrieve product' });
+            console.error("Error updating product:", error);
+            res.status(500).json({ error: "Failed to update product" });
+        }
+    }
+
+    async deleteProductSeason(req, res) {
+        try {
+            const productSeasonId = req.params.productSeasonId;
+            const isDeleted = await this.productService.deleteProductSeason(productSeasonId);
+            if (isDeleted) {
+                res.status(204).send();
+            } else {
+                res.status(404).json({ error: "product Season not found" });
+            }
+        } catch (error) {
+            console.error("Error deleting Product Season:", error);
+            res.status(500).json({ error: "Failed to delete Product Season" });
         }
     }
 
@@ -133,10 +140,10 @@ class ProductController {
         }
     }
 
-    async findProductNutritionByProductId(req, res) {
+    async getProductNutritionByProductId(req, res) {
         try {
             const productId = req.params.productId;
-            const productNutritionEntries = await this.productService.findProductNutritionByProductId(productId);
+            const productNutritionEntries = await this.productService.getProductNutritionByProductId(productId);
             res.status(200).json(productNutritionEntries);
         } catch (error) {
             console.error(error);

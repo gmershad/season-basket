@@ -49,27 +49,22 @@ class ProductRepository {
         }
     }
 
-    async getAllProductSeasons() {
+    async getProductSeasonByProductId(productId) {
         try {
-            const productSeasons = await ProductSeason.findAll();
+            const productSeasons = await ProductSeason.findAll({
+                where: {
+                    ProductId: productId
+                }
+            });
             return productSeasons;
         } catch (error) {
-            throw error;
-        }
-    }
-
-    async getProductSeasonById(productSeasonId) {
-        try {
-            const productSeason = await ProductSeason.findByPk(productSeasonId);
-            return productSeason;
-        } catch (error) {
-            throw error;
+            throw new Error(`Error getting product seasons: ${error.message}`);
         }
     }
 
     async updateProductSeason(productSeasonId, productSeasonData) {
         try {
-            const [updatedRowsCount, updatedProductSeasons] = await ProductSeason.update(
+            const [updatedRowsCount] = await ProductSeason.update(
                 productSeasonData,
                 {
                     where: {
@@ -83,7 +78,8 @@ class ProductRepository {
                 return null;
             }
 
-            return updatedProductSeasons[0];
+            const updatedProductSeason = await ProductSeason.findByPk(productSeasonId);
+            return updatedProductSeason;
         } catch (error) {
             throw error;
         }
@@ -112,7 +108,7 @@ class ProductRepository {
         }
     }
 
-    async findProductNutritionByProductId(productId) {
+    async getProductNutritionByProductId(productId) {
         try {
             const productNutritionEntries = await ProductNutrition.findAll({
                 where: { ProductId: productId },

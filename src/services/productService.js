@@ -28,14 +28,18 @@ class ProductService {
         return newProductSeason;
     }
 
-    async getAllProductSeasons() {
-        const productSeasons = await this.productRepository.getAllProductSeasons();
-        return productSeasons;
+    async getProductSeasonByProductId(productId) {
+        const productSeason = await this.productRepository.getProductSeasonByProductId(productId);
+        return productSeason;
     }
 
-    async getProductSeasonById(productSeasonId) {
-        const productSeason = await this.productRepository.getProductSeasonById(productSeasonId);
+    async updateProductSeason(productSeasonId, productSeasonData) {
+        const productSeason = await this.productRepository.updateProductSeason(productSeasonId, productSeasonData);
         return productSeason;
+    }
+
+    async deleteProductSeason(productSeasonId) {
+        await this.productRepository.deleteProductSeason(productSeasonId);
     }
 
     async getProductDetails(productId) {
@@ -53,8 +57,8 @@ class ProductService {
         return newProductNutrition;
     }
 
-    async findProductNutritionByProductId(productId) {
-        const productNutritionEntries = await this.productRepository.findProductNutritionByProductId(productId);
+    async getProductNutritionByProductId(productId) {
+        const productNutritionEntries = await this.productRepository.getProductNutritionByProductId(productId);
         return productNutritionEntries;
     }
 
