@@ -1,4 +1,4 @@
-const { Product, ProductSeason, ProductHealth, ProductNutrition } = require('../models');
+const { Product, ProductSeason, ProductHealth, ProductNutrition } = require('../../models');
 
 class ProductDetailsAggregate {
     constructor() {

@@ -1,7 +1,7 @@
 const express = require('express');
 const expressApp = require('./express-app');
 require('./models');
-const dbConnect = require('./database');
+const dbConnect = require('./infrastructure/database');
 
 async function createApp() {
     try {

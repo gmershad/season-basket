@@ -6,10 +6,10 @@ const createCountryService = require('../services/countryService');
 const createSeasonService = require('../services/seasonService');
 const createProductService = require('../services/productService');
 
-const createCountryRepository = require('../repository/countryRepository');
-const createSeasonRepository = require('../repository/seasonRepository');
-const createProductRepository = require('../repository/productRepository');
-const createproductDetailAggregate = require('../repository/ProductDetailsAggregate');
+const createCountryRepository = require('../infrastructure/repository/countryRepository');
+const createSeasonRepository = require('../infrastructure/repository/seasonRepository');
+const createProductRepository = require('../infrastructure/repository/productRepository');
+const createproductDetailAggregate = require('../infrastructure/repository/ProductDetailsAggregate');
 
 module.exports = (app) => {
     const countryRepository = new createCountryRepository();

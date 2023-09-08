@@ -1,4 +1,4 @@
-const { Product, ProductSeason, ProductNutrition, ProductHealth, ProductImage } = require('../models');
+const { Product, ProductSeason, ProductNutrition, ProductHealth, ProductImage } = require('../../models');
 
 class ProductRepository {
     async createProduct(productData) {

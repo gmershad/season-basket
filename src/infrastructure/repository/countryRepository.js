@@ -1,4 +1,4 @@
-const { Country, State } = require('../models');
+const { Country, State } = require('../../models');
 
 class CountryRepository {
     async createCountry(countryData) {

@@ -1,4 +1,4 @@
-const { Season } = require('../models');
+const { Season } = require('../../models');
 
 class SeasonRepository {
     async createSeason(seasonData) {
