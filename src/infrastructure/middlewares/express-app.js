@@ -12,13 +12,11 @@ module.exports = async (app) => {
     app.use(cors());
 
     app.use(
-        helmet.contentSecurityPolicy({
-            directives: {
-                "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
-            },
-        }),
+        helmet.noSniff(),
+        //helmet.hsts({ maxAge: 31536000, includeSubDomains: true }),
+        // helmet.frameguard({ action: 'sameorigin' }),
+        //helmet.referrerPolicy({ policy: 'same-origin' })
     );
-
     const limiter = rateLimit({
         windowMs: 1 * 60 * 1000, // 1 minute
         max: 20,
