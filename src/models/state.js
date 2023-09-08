@@ -1,18 +1,27 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../database');
+const sequelize = require('../database');
+const Country = require('./country');
 
-const Disease = sequelize.define('Disease', {
-    DiseaseId: {
-        type: DataTypes.STRING(10),
+const State = sequelize.define('State', {
+    StateId: {
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
+    },
+    CountryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Country,
+            key: 'country_id',
+        },
     },
     Name: {
         type: DataTypes.STRING(255),
         allowNull: false,
     },
-    Description: {
-        type: DataTypes.TEXT,
-        allowNull: true,
+    Language: {
+        type: DataTypes.STRING(255),
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -28,9 +37,9 @@ const Disease = sequelize.define('Disease', {
         onUpdate: DataTypes.NOW,
     },
 }, {
-    tableName: 'disease',
+    tableName: 'state',
     timestamps: false,
     underscored: true,
 });
 
-module.exports = Disease;
+module.exports = State;

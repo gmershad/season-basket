@@ -3,16 +3,16 @@ const cors = require("cors");
 
 const createCountryController = require('./controllers/countryController');
 const createCountryService = require('./services/countryService');
-const createCountryRepository = require('./database/repository/countryRepository');
+const createCountryRepository = require('./repository/countryRepository');
 
 const createSeasonController = require('./controllers/seasonController');
 const createSeasonService = require('./services/seasonService');
-const createSeasonRepository = require("./database/repository/seasonRepository");
+const createSeasonRepository = require("./repository/seasonRepository");
 
 const createProductController = require("./controllers/productController");
 const createProductService = require("./services/productService");
-const createProductRepository = require("./database/repository/ProductRepository");
-const createproductDetailAggregate = require("./database/repository/ProductDetailsAggregate");
+const createProductRepository = require("./repository/ProductRepository");
+const createproductDetailAggregate = require("./repository/ProductDetailsAggregate");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocs = require("./swagger-config");

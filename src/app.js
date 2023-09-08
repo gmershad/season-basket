@@ -1,6 +1,6 @@
 const express = require('express');
 const expressApp = require('./express-app');
-require('./database/models');
+require('./models');
 const dbConnect = require('./database');
 
 async function createApp() {

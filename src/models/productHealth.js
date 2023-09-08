@@ -1,27 +1,24 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../database/index');
-const Country = require('./country');
+const sequelize = require('../database');
 
-const State = sequelize.define('State', {
-    StateId: {
+const ProductHealth = sequelize.define('ProductHealth', {
+    ProductHealthId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    CountryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Country,
-            key: 'country_id',
-        },
-    },
-    Name: {
-        type: DataTypes.STRING(255),
+    ProductId: {
+        type: DataTypes.STRING(10),
         allowNull: false,
     },
-    Language: {
-        type: DataTypes.STRING(255),
+    Good: {
+        type: DataTypes.JSON,
+    },
+    Bad: {
+        type: DataTypes.JSON,
+    },
+    AllergyInfo: {
+        type: DataTypes.JSON,
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -37,9 +34,9 @@ const State = sequelize.define('State', {
         onUpdate: DataTypes.NOW,
     },
 }, {
-    tableName: 'state',
+    tableName: 'product_health',
     timestamps: false,
     underscored: true,
 });
 
-module.exports = State;
+module.exports = ProductHealth;

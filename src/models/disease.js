@@ -1,24 +1,18 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../database');
+const sequelize = require('../database');
 
-const ProductHealth = sequelize.define('ProductHealth', {
-    ProductHealthId: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    ProductId: {
+const Disease = sequelize.define('Disease', {
+    DiseaseId: {
         type: DataTypes.STRING(10),
+        primaryKey: true,
+    },
+    Name: {
+        type: DataTypes.STRING(255),
         allowNull: false,
     },
-    Good: {
-        type: DataTypes.JSON,
-    },
-    Bad: {
-        type: DataTypes.JSON,
-    },
-    AllergyInfo: {
-        type: DataTypes.JSON,
+    Description: {
+        type: DataTypes.TEXT,
+        allowNull: true,
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -34,9 +28,9 @@ const ProductHealth = sequelize.define('ProductHealth', {
         onUpdate: DataTypes.NOW,
     },
 }, {
-    tableName: 'product_health',
+    tableName: 'disease',
     timestamps: false,
     underscored: true,
 });
 
-module.exports = ProductHealth;
+module.exports = Disease;
