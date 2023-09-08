@@ -96,6 +96,9 @@ class ProductService {
         return isDeleted;
     }
 
+    async createProductImage(productId, imgUrls) {
+        return await this.productRepository.createProductImage(productId, imgUrls);
+    }
 }
 
 module.exports = ProductService;

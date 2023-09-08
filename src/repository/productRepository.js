@@ -1,4 +1,4 @@
-const { Product, ProductSeason, ProductNutrition, ProductHealth } = require('../models');
+const { Product, ProductSeason, ProductNutrition, ProductHealth, ProductImage } = require('../models');
 
 class ProductRepository {
     async createProduct(productData) {
@@ -197,6 +197,18 @@ class ProductRepository {
             });
 
             return deletedRowCount > 0;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async createProductImage(productId, imgUrls) {
+        try {
+            const productImage = await ProductImage.create({
+                ProductId: productId,
+                ImgUrls: imgUrls,
+            });
+            return productImage;
         } catch (error) {
             throw error;
         }

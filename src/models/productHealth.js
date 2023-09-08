@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database');
+const Product = require('./product');
 
 const ProductHealth = sequelize.define('ProductHealth', {
     ProductHealthId: {
@@ -8,8 +9,12 @@ const ProductHealth = sequelize.define('ProductHealth', {
         autoIncrement: true,
     },
     ProductId: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: Product,
+            key: 'product_id',
+        },
     },
     Good: {
         type: DataTypes.JSON,

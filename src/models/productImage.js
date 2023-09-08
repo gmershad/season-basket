@@ -1,9 +1,10 @@
+
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database');
 const Product = require('./product');
 
-const ProductNutrition = sequelize.define('ProductNutrition', {
-    NutritionId: {
+const ProductImage = sequelize.define('ProductImage', {
+    ImageId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -16,25 +17,9 @@ const ProductNutrition = sequelize.define('ProductNutrition', {
             key: 'product_id',
         },
     },
-    Calories: {
-        type: DataTypes.DECIMAL(8, 2),
-        allowNull: true,
-    },
-    Carbs: {
-        type: DataTypes.DECIMAL(8, 2),
-        allowNull: true,
-    },
-    Fat: {
-        type: DataTypes.DECIMAL(8, 2),
-        allowNull: true,
-    },
-    Protein: {
-        type: DataTypes.DECIMAL(8, 2),
-        allowNull: true,
-    },
-    Serving: {
-        type: DataTypes.STRING(20),
-        allowNull: true,
+    ImgUrls: {
+        type: DataTypes.JSON,
+        allowNull: false,
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -50,9 +35,9 @@ const ProductNutrition = sequelize.define('ProductNutrition', {
         onUpdate: DataTypes.NOW,
     },
 }, {
-    tableName: 'product_nutrition',
+    tableName: 'product_image',
     timestamps: false,
     underscored: true,
 });
 
-module.exports = ProductNutrition;
+module.exports = ProductImage;
