@@ -8,9 +8,10 @@ if (process.env.NODE_ENV !== "prod") {
 }
 
 module.exports = {
-    PORT: 8080 || process.env.PORT,
-    DB_HOST: "localhost",
-    DB_USER: "root",
-    DB_PASSWORD: "123456",
-    DB_DATABASE: "season_basket",
+    PORT: process.env.PORT || 8080,
+    DB_PORT: process.env.DB_PORT || 3306,
+    DB_HOST: process.env.DB_HOST || "34.136.29.169",
+    DB_USER: process.env.DB_USER || "admin_user",
+    DB_PASSWORD: process.env.DB_PASSWORD || "P0i9Ct5Zw3TEz+w2d1q",
+    DB_DATABASE: process.env.DB_PORT || "season_basket",
 };

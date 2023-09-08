@@ -6,6 +6,7 @@ const dbConnect = require('./infrastructure/database');
 async function createApp() {
     try {
         await dbConnect.authenticate();
+        //await dbConnect.sync({ alter: true });
         await dbConnect.sync();
         const app = express();
         await expressApp(app);

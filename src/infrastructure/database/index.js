@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE } = require("../../config");
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE, DB_PORT } = require("../../config");
 
 // const dbConnect = new Sequelize(
 //     {
@@ -14,6 +14,15 @@ const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE } = require("../../config");
 //     }
 // );
 
-const dbConnect = new Sequelize('mysql://admin_user:P0i9Ct5Zw3TEz+w2d1q@34.136.29.169:3306/season_basket');
+// const dbConnect = new Sequelize(
+//     'mysql://admin_user:P0i9Ct5Zw3TEz+w2d1q@34.136.29.169:3306/season_basket'
+// );
+
+const dbConnect = new Sequelize(
+    `mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
+);
+
+module.exports = dbConnect;
+
 
 module.exports = dbConnect;
