@@ -30,8 +30,8 @@ module.exports = async (app) => {
     const seasonService = new createSeasonService(seasonRepository);
 
     const productRepository = new createProductRepository();
-    const ProductDetailsAggregate = new createproductDetailAggregate();
-    const productService = new createProductService(productRepository, ProductDetailsAggregate);
+    const productDetailsAggregate = new createproductDetailAggregate();
+    const productService = new createProductService(productRepository, productDetailsAggregate);
 
     const controllers = {
         countryController: new createCountryController(countryService),

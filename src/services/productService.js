@@ -43,12 +43,12 @@ class ProductService {
     }
 
     async getProductDetails(productId) {
-        const product = await this.productRepository.getProductDetails(productId);
+        const product = await this.productDetailAggregate.getProductDetails(productId);
         return product;
     }
 
     async getPaginatedProductDetails(pageNumber, pageSize) {
-        const products = await this.productRepository.getPaginatedProductDetails(pageNumber, pageSize);
+        const products = await this.productDetailAggregate.getPaginatedProductDetails(pageNumber, pageSize);
         return products;
     }
 
@@ -62,13 +62,13 @@ class ProductService {
         return productNutritionEntries;
     }
 
-    async updateProductNutritionByNutritionId(nutritionId, updates) {
-        const [updatedCount, updatedProductNutrition] = await this.productRepository.updateProductNutritionByNutritionId(nutritionId, updates);
-        return [updatedCount, updatedProductNutrition];
+    async updateProductNutrition(nutritionId, updates) {
+        const updatedProductNutrition = await this.productRepository.updateProductNutrition(nutritionId, updates);
+        return updatedProductNutrition;
     }
 
-    async deleteProductNutritionByNutritionId(nutritionId) {
-        const deletedCount = await this.productRepository.deleteProductNutritionByNutritionId(nutritionId);
+    async deleteProductNutrition(nutritionId) {
+        const deletedCount = await this.productRepository.deleteProductNutrition(nutritionId);
         return deletedCount;
     }
 
@@ -78,8 +78,8 @@ class ProductService {
         return newProductHealth;
     }
 
-    async getProductHealth(productHealthId) {
-        const productHealth = await this.productRepository.getProductHealth(productHealthId);
+    async getProductHealth(productId) {
+        const productHealth = await this.productRepository.getProductHealth(productId);
         return productHealth;
     }
 

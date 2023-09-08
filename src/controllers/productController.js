@@ -1,4 +1,5 @@
 class ProductController {
+
     constructor(productService) {
         this.productService = productService;
     }
@@ -13,22 +14,6 @@ class ProductController {
             res.status(500).json({ error: 'Unable to create product' });
         }
     }
-
-    async getProductById(req, res) {
-        try {
-            const productId = req.params.productId;
-            const product = await this.productService.findProductById(productId);
-            if (!product) {
-                res.status(404).json({ error: 'Product not found' });
-            } else {
-                res.json(product);
-            }
-        } catch (error) {
-            console.error('Error retrieving product:', error);
-            res.status(500).json({ error: 'Unable to retrieve product' });
-        }
-    }
-
 
     async updateProductById(req, res) {
         try {
@@ -63,7 +48,7 @@ class ProductController {
 
     async getProductDetails(req, res) {
         try {
-            const productId = req.params.productId;
+            const productId = parseInt(req.params.productId);
             const product = await this.productService.getProductDetails(productId);
             if (!product) {
                 res.status(404).json({ error: 'Product not found' });
@@ -72,6 +57,18 @@ class ProductController {
             }
         } catch (error) {
             console.error('Error retrieving product:', error);
+            res.status(500).json({ error: 'Unable to retrieve product' });
+        }
+    }
+
+    async getPaginatedProductDetails(req, res) {
+        try {
+            const pageNumber = parseInt(req.params.pageNumber);
+            const pageSize = parseInt(req.params.pageSize);
+            const products = await this.productService.getPaginatedProductDetails(pageNumber, pageSize);
+            res.json(products);
+        } catch (error) {
+            console.error('Error retrieving products:', error);
             res.status(500).json({ error: 'Unable to retrieve product' });
         }
     }
@@ -151,32 +148,35 @@ class ProductController {
         }
     }
 
-    async updateProductNutritionByNutritionId(req, res) {
+    async updateProductNutrition(req, res) {
         try {
-            const nutritionId = req.params.nutritionId;
+            const nutritionId = parseInt(req.params.nutritionId);
             const updates = req.body;
-            const [updatedCount, updatedProductNutrition] = await this.productService.updateProductNutritionByNutritionId(
+            const updatedProductNutrition = await this.productService.updateProductNutrition(
                 nutritionId,
                 updates
             );
-            res.status(200).json({ updatedCount, updatedProductNutrition });
+            res.status(200).json(updatedProductNutrition);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     }
 
-    async deleteProductNutritionByNutritionId(req, res) {
+    async deleteProductNutrition(req, res) {
         try {
             const nutritionId = req.params.nutritionId;
-            const deletedCount = await this.productService.deleteProductNutritionByNutritionId(nutritionId);
-            res.status(200).json({ deletedCount });
+            const isDeleted = await this.productService.deleteProductNutrition(nutritionId);
+            if (isDeleted) {
+                res.status(204).send();
+            } else {
+                res.status(404).json({ error: "product nutrition not found" });
+            }
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
     }
-
 
     async createProductHealth(req, res) {
         try {
@@ -191,7 +191,7 @@ class ProductController {
 
     async getProductHealth(req, res) {
         try {
-            const productId = req.params.productId;
+            const productId = parseInt(req.params.productId);
             const productHealth = await this.productService.getProductHealth(productId);
             if (productHealth) {
                 res.status(200).json(productHealth);
@@ -206,7 +206,7 @@ class ProductController {
 
     async updateProductHealth(req, res) {
         try {
-            const healthId = req.params.healthId;
+            const healthId = parseInt(req.params.healthId);
             const updatedProductHealth = await this.productService.updateProductHealth(healthId, req.body);
             if (updatedProductHealth) {
                 res.status(200).json(updatedProductHealth);

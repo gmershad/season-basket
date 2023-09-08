@@ -119,24 +119,29 @@ class ProductRepository {
         }
     }
 
-    async updateProductNutritionByNutritionId(nutritionId, updates) {
+    async updateProductNutrition(nutritionId, updates) {
         try {
-            const [updatedCount, updatedProductNutrition] = await ProductNutrition.update(updates, {
+            const [updatedCount] = await ProductNutrition.update(updates, {
                 where: { NutritionId: nutritionId },
                 returning: true,
             });
-            return [updatedCount, updatedProductNutrition];
+            if (updatedCount === 0) {
+                return null;
+            }
+
+            const updatedProductSeason = await ProductNutrition.findByPk(nutritionId);
+            return updatedProductSeason;
         } catch (error) {
             throw error;
         }
     }
 
-    async deleteProductNutritionByNutritionId(nutritionId) {
+    async deleteProductNutrition(nutritionId) {
         try {
             const deletedCount = await ProductNutrition.destroy({
                 where: { NutritionId: nutritionId },
             });
-            return deletedCount;
+            return deletedCount > 0;
         } catch (error) {
             throw error;
         }
@@ -151,32 +156,33 @@ class ProductRepository {
         }
     }
 
-    async getProductHealthById(productHealthId) {
+    async getProductHealth(productId) {
         try {
-            const productHealth = await ProductHealth.findByPk(productHealthId);
+            const productHealth = await ProductHealth.findAll({
+                where: { ProductId: productId }
+            });
             return productHealth;
         } catch (error) {
-            throw error;
+            throw new Error(`Error getting product health: ${error.message}`);
         }
     }
 
     async updateProductHealth(productHealthId, productHealthData) {
         try {
-            const [updatedRowsCount, updatedProductHealth] = await ProductHealth.update(
+            const [updatedCount] = await ProductHealth.update(
                 productHealthData,
                 {
-                    where: {
-                        ProductHealthId: productHealthId,
-                    },
+                    where: { ProductHealthId: productHealthId },
                     returning: true,
                 }
             );
 
-            if (updatedRowsCount === 0) {
+            if (updatedCount === 0) {
                 return null;
             }
 
-            return updatedProductHealth[0];
+            const updatedProductHealth = await ProductHealth.findByPk(productHealthId);
+            return updatedProductHealth;
         } catch (error) {
             throw error;
         }
