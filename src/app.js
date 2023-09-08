@@ -1,12 +1,12 @@
 const express = require('express');
-const expressApp = require('./express-app');
+const expressApp = require('./infrastructure/middlewares/express-app');
 require('./models');
 const dbConnect = require('./infrastructure/database');
 
 async function createApp() {
     try {
         await dbConnect.authenticate();
-        await dbConnect.sync({ force: false });
+        await dbConnect.sync();
         const app = express();
         await expressApp(app);
         return app;

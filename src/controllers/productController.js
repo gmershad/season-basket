@@ -1,3 +1,5 @@
+const upload = require('../infrastructure/middlewares//multer-config');
+
 class ProductController {
 
     constructor(productService) {
@@ -231,6 +233,33 @@ class ProductController {
         } catch (error) {
             console.error("Error deleting product health:", error);
             res.status(500).json({ error: "Failed to delete product health" });
+        }
+    }
+
+    async uploadProductImage(req, res) {
+        try {
+            const productId = req.params.productId;
+
+            upload.array('image')(req, res, async (err) => {
+                if (err) {
+                    console.error('Error uploading file:', err);
+                    return res.status(500).json({ error: 'Unable to upload file' });
+                }
+
+                if (!req.files || req.files.length === 0) {
+                    return res.status(400).json({ error: "No files uploaded" });
+                }
+
+                const imageUrls = req.files.map((file) => {
+                    return `${req.protocol}://${req.get("host")}/images/${file.filename}`;
+                });
+
+                const product = await this.productService.createProductImage(productId, imageUrls)
+                res.status(201).json(product);
+            });
+        } catch (error) {
+            console.error('Error uploading product image:', error);
+            res.status(500).json({ error: 'Unable to upload product image' });
         }
     }
 }

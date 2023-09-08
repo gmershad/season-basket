@@ -24,6 +24,8 @@ module.exports = (productController) => {
 
 
     router.get('/:pageNumber/:pageSize', productController.getPaginatedProductDetails.bind(productController));
+
+    router.post('/image/:productId', productController.uploadProductImage.bind(productController));
     return router;
 };
 
