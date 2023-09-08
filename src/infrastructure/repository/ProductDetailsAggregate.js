@@ -1,4 +1,5 @@
-const { Product, ProductSeason, ProductHealth, ProductNutrition, ProductImage } = require('../../models');
+const { Product, ProductSeason, ProductHealth, ProductNutrition, ProductImage,
+    ProductDisease, Season, Disease } = require('../../models');
 
 class ProductDetailsAggregate {
     constructor() {
@@ -6,21 +7,27 @@ class ProductDetailsAggregate {
         Product.hasOne(ProductHealth, { foreignKey: 'ProductId' });
         Product.hasOne(ProductNutrition, { foreignKey: 'ProductId' });
         Product.hasOne(ProductImage, { foreignKey: 'ProductId' });
+        Product.hasMany(ProductDisease, { foreignKey: 'ProductId' });
+
+        ProductSeason.belongsTo(Season, { foreignKey: 'SeasonId' });
+        ProductDisease.belongsTo(Disease, { foreignKey: 'DiseaseId' });
     }
 
     async getPaginatedProductDetails(pageNumber, pageSize) {
         try {
             const offset = (pageNumber - 1) * pageSize;
             const totalCount = await Product.count();
+            const excludeAttributes = ['Description', 'CreatedAt', 'UpdatedAt', 'ProductId'];
 
             const products = await Product.findAll({
                 limit: pageSize,
                 offset: offset,
-                attributes: { exclude: ['Description'] },
+                attributes: { exclude: excludeAttributes },
                 include: [
                     {
                         model: ProductSeason,
                         required: false,
+                        attributes: { exclude: excludeAttributes }
                     },
                     {
                         model: ProductHealth,
@@ -33,13 +40,19 @@ class ProductDetailsAggregate {
                     {
                         model: ProductImage,
                         required: false,
+                        attributes: { exclude: excludeAttributes }
                     },
+                    {
+                        model: ProductDisease,
+                        required: false,
+                        attributes: { exclude: excludeAttributes }
+                    }
                 ],
             });
 
             const totalPages = Math.ceil(totalCount / pageSize);
             const result = {
-                products: products,
+                items: products,
                 total: totalCount,
                 totalPages: totalPages,
                 currentPage: pageNumber,
@@ -53,19 +66,51 @@ class ProductDetailsAggregate {
 
     async getProductDetails(productId) {
         try {
+            const excludeAttributes = ['Description', 'CreatedAt', 'UpdatedAt', 'ProductId'];
+
             const product = await Product.findByPk(productId, {
+                attributes: { exclude: excludeAttributes },
                 include: [
                     {
                         model: ProductSeason,
                         required: false,
+                        attributes: { exclude: excludeAttributes },
+                        include: [
+                            {
+                                model: Season,
+                                attributes: ['name'],
+                                required: false,
+                            },
+                        ],
                     },
                     {
                         model: ProductHealth,
                         required: false,
+                        attributes: { exclude: excludeAttributes },
                     },
                     {
                         model: ProductNutrition,
                         required: false,
+                        attributes: { exclude: excludeAttributes },
+                    },
+                    {
+                        model: ProductImage,
+                        required: false,
+                        attributes: { exclude: excludeAttributes },
+                    },
+                    {
+                        model: ProductDisease,
+                        required: false,
+                        attributes: {
+                            exclude: excludeAttributes,
+                        },
+                        include: [
+                            {
+                                model: Disease,
+                                attributes: ['name'],
+                                required: false,
+                            },
+                        ],
                     },
                 ],
             });
@@ -79,6 +124,8 @@ class ProductDetailsAggregate {
             throw new Error(`Error retrieving product details: ${error.message}`);
         }
     }
+
+
 }
 
 module.exports = ProductDetailsAggregate;

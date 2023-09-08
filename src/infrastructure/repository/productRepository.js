@@ -1,4 +1,5 @@
-const { Product, ProductSeason, ProductNutrition, ProductHealth, ProductImage } = require('../../models');
+const { Product, ProductSeason, ProductNutrition, ProductHealth, ProductImage, ProductDisease }
+    = require('../../models');
 
 class ProductRepository {
     async createProduct(productData) {
@@ -233,6 +234,47 @@ class ProductRepository {
             });
 
             return deletedRowCount > 0;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async createProductDisease(data) {
+        try {
+            const productDisease = await ProductDisease.create(data);
+            return productDisease;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async deleteProductDisease(productDiseaseId) {
+        try {
+            const deleted = await ProductDisease.destroy({
+                where: { ProductDiseaseId: productDiseaseId },
+            });
+            return deleted > 0;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updateProductDisease(productDiseaseId, updatedData) {
+        try {
+            const [updatedCount] = await ProductDisease.update(
+                updatedData,
+                {
+                    where: { ProductDiseaseId: productDiseaseId },
+                    returning: true,
+                }
+            );
+
+            if (updatedCount === 0) {
+                return null;
+            }
+
+            const updatedProductDisease = await ProductDisease.findByPk(productDiseaseId);
+            return updatedProductDisease;
         } catch (error) {
             throw error;
         }

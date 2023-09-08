@@ -28,6 +28,10 @@ module.exports = (productController) => {
     router.post('/image/:productId', productController.uploadProductImage.bind(productController));
     router.delete('/image/:imageId', productController.deleteProductImage.bind(productController));
 
+    router.post('/disease', productController.createProductDisease.bind(productController));
+    router.put('/disease/:productDiseaseId', productController.updateProductDisease.bind(productController));
+    router.delete('/disease/:productDiseaseId', productController.deleteProductDisease.bind(productController));
+
     return router;
 };
 

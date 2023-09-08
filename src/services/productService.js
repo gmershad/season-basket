@@ -160,6 +160,24 @@ class ProductService {
             throw error;
         }
     }
+
+    async createProductDisease(data) {
+        const productDisease = await this.productRepository.createProductDisease(data);
+        return productDisease;
+    }
+
+    async deleteProductDisease(productDiseaseId) {
+        const isDeleted = await this.productRepository.deleteProductDisease(
+            productDiseaseId
+        );
+        return isDeleted;
+    }
+
+
+    async updateProductDisease(productDiseaseId, updatedData) {
+        const result = await this.productRepository.updateProductDisease(productDiseaseId, updatedData);
+        return result;
+    }
 }
 
 module.exports = ProductService;

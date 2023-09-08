@@ -7,5 +7,7 @@ module.exports = {
     ProductNutrition: require('./productNutrition'),
     Disease: require('./disease'),
     ProductHealth: require('./productHealth'),
-    ProductImage: require("./productImage")
+    ProductImage: require("./productImage"),
+    Disease: require("./disease"),
+    ProductDisease: require("./productDisease")
 }

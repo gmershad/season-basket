@@ -274,6 +274,52 @@ class ProductController {
             res.status(500).json({ error: "Unable to delete product image" });
         }
     }
+
+
+    async createProductDisease(req, res) {
+        try {
+            const data = req.body;
+            const productDisease = await this.productService.createProductDisease(data);
+            res.status(201).json(productDisease);
+        } catch (error) {
+            console.error('Error creating product disease:', error);
+            res.status(500).json({ error: 'Unable to create product disease' });
+        }
+    }
+
+    async deleteProductDisease(req, res) {
+        try {
+            const productDiseaseId = parseInt(req.params.productDiseaseId);
+            const isDeleted = await this.productService.deleteProductDisease(
+                productDiseaseId
+            );
+            if (isDeleted) {
+                res.status(204).send();
+            } else {
+                res.status(500).json({ error: 'Failed to delete product disease' });
+            }
+        } catch (error) {
+            console.error('Error deleting product disease:', error);
+            res.status(500).json({ error: 'Unable to delete product disease' });
+        }
+    }
+
+    async updateProductDisease(req, res) {
+        try {
+            const productDiseaseId = parseInt(req.params.productDiseaseId);
+            const updatedData = req.body;
+
+            const updatedProductDisease = await this.productService.updateProductDisease(
+                productDiseaseId,
+                updatedData
+            );
+
+            res.status(200).json(updatedProductDisease);
+        } catch (error) {
+            console.error('Error updating product disease:', error);
+            res.status(500).json({ error: 'Unable to update product disease' });
+        }
+    }
 }
 
 module.exports = ProductController;
