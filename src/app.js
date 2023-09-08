@@ -2,6 +2,7 @@ const express = require('express');
 const expressApp = require('./infrastructure/middlewares/express-app');
 require('./models');
 const dbConnect = require('./infrastructure/database');
+const compression = require("compression");
 
 async function createApp() {
     try {
@@ -9,6 +10,7 @@ async function createApp() {
         //await dbConnect.sync({ alter: true });
         await dbConnect.sync();
         const app = express();
+        app.use(compression());
         await expressApp(app);
         return app;
     } catch (error) {

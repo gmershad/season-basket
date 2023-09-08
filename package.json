@@ -4,15 +4,18 @@
   "description": "season basket",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Gul Ershad",
+  "author": "",
   "license": "Violette Labs Pvt. Ltd",
   "dependencies": {
     "camelcase": "^8.0.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-rate-limit": "^6.11.0",
     "expressjs-utils": "^3.1.4",
     "google-auth-library": "^9.0.0",
     "googleapis": "^126.0.1",
