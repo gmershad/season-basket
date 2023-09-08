@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 class ProductService {
 
     constructor(productRepository, productDetailAggregate) {
@@ -96,8 +98,31 @@ class ProductService {
         return isDeleted;
     }
 
-    async createProductImage(productId, imgUrls, imageFileNames) {
+    async createProductWithImages(productId, imgUrls, imageFileNames) {
         return await this.productRepository.createProductImage(productId, imgUrls, imageFileNames);
+    }
+
+    async createProductImage(productId, req) {
+        try {
+            const uploadedFiles = req.files;
+
+            if (!uploadedFiles || uploadedFiles.length === 0) {
+                throw new Error("No files uploaded");
+            }
+
+            let imageFileNames = [];
+            const imageUrls = req.files.map((file) => {
+                imageFileNames.push(file.filename);
+                return `${req.protocol}://${req.get("host")}/images/${file.filename}`;
+            });
+
+            const product = await this.createProductWithImages(productId, imageUrls, imageFileNames);
+
+            return product;
+        } catch (error) {
+            console.error("Error creating product with images:", error);
+            throw error;
+        }
     }
 
     async getImageDetailsById(imageId) {
@@ -107,6 +132,33 @@ class ProductService {
 
     async deleteImageById(imageId) {
         return await this.productRepository.deleteImageById(imageId);
+    }
+
+    async deleteProductImage(imageId) {
+        try {
+            const imageDetails = await this.getImageDetailsById(imageId);
+
+            if (!imageDetails) {
+                return false;
+            }
+
+            const imageFileNames = JSON.parse(imageDetails.ImageFileName);
+
+            for (const fileName of imageFileNames) {
+                const imagePath = `images/${fileName}`;
+                try {
+                    await fs.promises.unlink(imagePath);
+                } catch (error) {
+                    console.error(`Error deleting file ${fileName}:`, error);
+                }
+            }
+
+            const isDeleted = await this.deleteImageById(imageId);
+            return isDeleted;
+        } catch (error) {
+            console.error("Error deleting product image:", error);
+            throw error;
+        }
     }
 }
 

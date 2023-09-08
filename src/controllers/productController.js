@@ -1,7 +1,4 @@
 const upload = require('../infrastructure/middlewares//multer-config');
-const fs = require("fs");
-const { promisify } = require("util");
-const unlinkAsync = promisify(fs.unlink);
 
 class ProductController {
 
@@ -253,13 +250,7 @@ class ProductController {
                     return res.status(400).json({ error: "No files uploaded" });
                 }
 
-                let imageFileNames = [];
-                const imageUrls = req.files.map((file) => {
-                    imageFileNames.push(file.filename);
-                    return `${req.protocol}://${req.get("host")}/images/${file.filename}`;
-                });
-
-                const product = await this.productService.createProductImage(productId, imageUrls, imageFileNames)
+                const product = await this.productService.createProductImage(productId, req);
                 res.status(201).json(product);
             });
         } catch (error) {
@@ -268,27 +259,10 @@ class ProductController {
         }
     }
 
-
     async deleteProductImage(req, res) {
         try {
             const imageId = parseInt(req.params.imageId);
-            const imageDetails = await this.productService.getImageDetailsById(imageId);
-
-            if (!imageDetails) {
-                return res.status(404).json({ error: "Image not found" });
-            }
-
-            const imageFileNames = JSON.parse(imageDetails.ImageFileName);
-            for (const fileName of imageFileNames) {
-                const imagePath = `images/${fileName}`;
-                try {
-                    await fs.promises.unlink(imagePath);
-                } catch (error) {
-                    console.error(`Error deleting file ${fileName}:`, error);
-                }
-            }
-
-            const isDeleted = await this.productService.deleteImageById(imageId);
+            const isDeleted = await this.productService.deleteProductImage(imageId);
 
             if (isDeleted) {
                 res.status(204).send();
