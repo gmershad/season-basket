@@ -20,6 +20,13 @@ cors_custom_response_headers:
 gcloud app deploy
 
 
+# Commands to Run Service
+
+npm start,
+npm stop
+npm restart
+npm run delete
+
 
 
 
