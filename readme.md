@@ -1,8 +1,26 @@
-# My Awesome Project
+# Deploy Your Node.js Application:
 
-Welcome to my awesome project! This project does amazing things and will make your life easier.
+gcloud app deploy
 
-## Installation
+# Set App Engine CORS Configuration (Optional):
 
-To install this project, simply run:
+app.yaml
+
+runtime: nodejs14
+
+env_variables:
+
+cors_custom_response_headers:
+  "Access-Control-Allow-Origin": "*"
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS"
+
+
+# Deploy Your App Again
+
+gcloud app deploy
+
+
+
+
+
 
