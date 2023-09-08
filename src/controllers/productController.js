@@ -1,4 +1,7 @@
 const upload = require('../infrastructure/middlewares//multer-config');
+const fs = require("fs");
+const { promisify } = require("util");
+const unlinkAsync = promisify(fs.unlink);
 
 class ProductController {
 
@@ -250,16 +253,51 @@ class ProductController {
                     return res.status(400).json({ error: "No files uploaded" });
                 }
 
+                let imageFileNames = [];
                 const imageUrls = req.files.map((file) => {
+                    imageFileNames.push(file.filename);
                     return `${req.protocol}://${req.get("host")}/images/${file.filename}`;
                 });
 
-                const product = await this.productService.createProductImage(productId, imageUrls)
+                const product = await this.productService.createProductImage(productId, imageUrls, imageFileNames)
                 res.status(201).json(product);
             });
         } catch (error) {
             console.error('Error uploading product image:', error);
             res.status(500).json({ error: 'Unable to upload product image' });
+        }
+    }
+
+
+    async deleteProductImage(req, res) {
+        try {
+            const imageId = parseInt(req.params.imageId);
+            const imageDetails = await this.productService.getImageDetailsById(imageId);
+
+            if (!imageDetails) {
+                return res.status(404).json({ error: "Image not found" });
+            }
+
+            const imageFileNames = JSON.parse(imageDetails.ImageFileName);
+            for (const fileName of imageFileNames) {
+                const imagePath = `images/${fileName}`;
+                try {
+                    await fs.promises.unlink(imagePath);
+                } catch (error) {
+                    console.error(`Error deleting file ${fileName}:`, error);
+                }
+            }
+
+            const isDeleted = await this.productService.deleteImageById(imageId);
+
+            if (isDeleted) {
+                res.status(204).send();
+            } else {
+                res.status(500).json({ error: "Failed to delete image" });
+            }
+        } catch (error) {
+            console.error("Error deleting product image:", error);
+            res.status(500).json({ error: "Unable to delete product image" });
         }
     }
 }

@@ -202,13 +202,37 @@ class ProductRepository {
         }
     }
 
-    async createProductImage(productId, imgUrls) {
+    async createProductImage(productId, imgUrls, imageFileNames) {
         try {
             const productImage = await ProductImage.create({
                 ProductId: productId,
                 ImgUrls: imgUrls,
+                ImageFileName: imageFileNames
             });
             return productImage;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getImageDetailsById(imageId) {
+        try {
+            const imageDetails = await ProductImage.findByPk(imageId);
+            return imageDetails;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async deleteImageById(imageId) {
+        try {
+            const deletedRowCount = await ProductImage.destroy({
+                where: {
+                    ImageId: imageId,
+                },
+            });
+
+            return deletedRowCount > 0;
         } catch (error) {
             throw error;
         }

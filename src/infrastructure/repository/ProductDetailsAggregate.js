@@ -1,10 +1,11 @@
-const { Product, ProductSeason, ProductHealth, ProductNutrition } = require('../../models');
+const { Product, ProductSeason, ProductHealth, ProductNutrition, ProductImage } = require('../../models');
 
 class ProductDetailsAggregate {
     constructor() {
         Product.hasMany(ProductSeason, { foreignKey: 'ProductId' });
         Product.hasOne(ProductHealth, { foreignKey: 'ProductId' });
         Product.hasOne(ProductNutrition, { foreignKey: 'ProductId' });
+        Product.hasOne(ProductImage, { foreignKey: 'ProductId' });
     }
 
     async getPaginatedProductDetails(pageNumber, pageSize) {
@@ -27,6 +28,10 @@ class ProductDetailsAggregate {
                     },
                     {
                         model: ProductNutrition,
+                        required: false,
+                    },
+                    {
+                        model: ProductImage,
                         required: false,
                     },
                 ],

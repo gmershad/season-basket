@@ -96,8 +96,17 @@ class ProductService {
         return isDeleted;
     }
 
-    async createProductImage(productId, imgUrls) {
-        return await this.productRepository.createProductImage(productId, imgUrls);
+    async createProductImage(productId, imgUrls, imageFileNames) {
+        return await this.productRepository.createProductImage(productId, imgUrls, imageFileNames);
+    }
+
+    async getImageDetailsById(imageId) {
+        const imageDetail = await this.productRepository.getImageDetailsById(imageId);
+        return imageDetail;
+    }
+
+    async deleteImageById(imageId) {
+        return await this.productRepository.deleteImageById(imageId);
     }
 }
 

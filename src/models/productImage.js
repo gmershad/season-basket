@@ -21,6 +21,10 @@ const ProductImage = sequelize.define('ProductImage', {
         type: DataTypes.JSON,
         allowNull: false,
     },
+    ImageFileName: {
+        type: DataTypes.JSON,
+        allowNull: false,
+    },
     IsActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

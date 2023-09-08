@@ -26,6 +26,8 @@ module.exports = (productController) => {
     router.get('/:pageNumber/:pageSize', productController.getPaginatedProductDetails.bind(productController));
 
     router.post('/image/:productId', productController.uploadProductImage.bind(productController));
+    router.delete('/image/:imageId', productController.deleteProductImage.bind(productController));
+
     return router;
 };
 
