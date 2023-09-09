@@ -1245,6 +1245,112 @@
         }
       }
     },
+    "/api/product/season": {
+      "post": {
+        "summary": "Create a Product Season",
+        "description": "Create a product season.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ProductId": {
+                  "type": "integer",
+                  "description": "ProductId"
+                },
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "SeasonId"
+                },
+                "StateId": {
+                  "type": "integer",
+                  "description": "StateId"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Product IsActive"
+                }
+              },
+              "required": [
+                "ProductId",
+                "SeasonId",
+                "StateId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product season created successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/product/{productId}/season": {
+      "get": {
+        "summary": "Get Product season by productId",
+        "description": "Get Product season by productId",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "productId to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product season retrieved successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "ID of the product."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/*": {
       "parameters": [
         {
