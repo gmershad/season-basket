@@ -14,7 +14,5 @@ module.exports = (countryController) => {
     router.put("/state/:id", countryController.updateState.bind(countryController));
     router.delete("/state/:id", countryController.deleteState.bind(countryController));
 
-    router.get("/:countryId/state", countryController.getAllStatesByCountry.bind(countryController));
-
     return router;
 };

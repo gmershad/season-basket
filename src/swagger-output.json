@@ -443,7 +443,7 @@
         }
       }
     },
-    "/api/country/{countryId}/state": {
+    "/public/api/country/{countryId}/state": {
       "get": {
         "summary": "Get States by Country",
         "description": "Retrieve all states within a specific country.",
