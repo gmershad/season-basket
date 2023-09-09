@@ -17,7 +17,7 @@ async function createApp() {
         // app.use(csrfProtection);
         app.use(compression());
         await expressApp(app);
-        app.use((req, res, next) => { res.locals.csrfToken = req.csrfToken(); next(); });
+        // app.use((req, res, next) => { res.locals.csrfToken = req.csrfToken(); next(); });
         return app;
     } catch (error) {
         console.error('Error connecting to the database:', error);
