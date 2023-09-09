@@ -27,8 +27,8 @@ class CountryService {
         return this.countryRepository.createState(stateData);
     }
 
-    async getAllStatesByCountry() {
-        return this.countryRepository.getAllStatesByCountry();
+    async getAllStatesByCountry(countryId) {
+        return this.countryRepository.getAllStatesByCountry(countryId);
     }
 
     async getStateById(stateId) {

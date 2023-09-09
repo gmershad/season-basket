@@ -17,7 +17,7 @@ class CountryController {
 
     async getCountryById(req, res) {
         try {
-            const countryId = req.params.countryId;
+            const countryId = parseInt(req.params.countryId);
             const country = await this.countryService.getCountryById(countryId);
             if (!country) {
                 return res.status(404).json({ error: 'Country not found' });
@@ -79,7 +79,7 @@ class CountryController {
 
     async getAllStatesByCountry(req, res) {
         try {
-            const countryId = req.params.countryId
+            const countryId = parseInt(req.params.countryId);
             const states = await this.countryService.getAllStatesByCountry(countryId);
             res.status(200).json(states);
         } catch (error) {

@@ -214,6 +214,10 @@
                 "Name": {
                   "type": "string",
                   "description": "Country name."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
                 }
               },
               "required": [
@@ -308,7 +312,25 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "CountryCode": {
+                  "type": "string",
+                  "description": "Country code."
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Country name."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
+                }
+              },
+              "required": [
+                "CountryCode",
+                "Name"
+              ]
             }
           }
         ],
@@ -376,7 +398,30 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "CountryId": {
+                  "type": "integer",
+                  "description": "Country Id."
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "State name."
+                },
+                "Language": {
+                  "type": "string",
+                  "description": "Language name."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
+                }
+              },
+              "required": [
+                "CountryId",
+                "Name",
+                "Language"
+              ]
             }
           }
         ],
@@ -391,6 +436,80 @@
             "description": "Internal Server Error.",
             "schema": {
               "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/country/{countryId}/state": {
+      "get": {
+        "summary": "Get States by Country",
+        "description": "Retrieve all states within a specific country.",
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the country for which to retrieve states."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "States retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "StateId": {
+                    "type": "integer",
+                    "description": "ID of the state."
+                  },
+                  "Name": {
+                    "type": "string",
+                    "description": "Name of the state."
+                  },
+                  "IsActive": {
+                    "type": "boolean",
+                    "description": "State's activation status."
+                  },
+                  "CreatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Date and time when the state was created."
+                  },
+                  "UpdatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Date and time when the state was last updated."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Country not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
             }
           }
         }
