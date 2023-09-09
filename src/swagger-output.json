@@ -800,6 +800,250 @@
         }
       }
     },
+    "/api/disease": {
+      "post": {
+        "summary": "Create a disease",
+        "description": "Create a new disease.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "description": "Disease name."
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Disease description."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
+                }
+              },
+              "required": [
+                "Name",
+                "Status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Disease created successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "DiseaseId": {
+                  "type": "integer",
+                  "description": "ID of the created disease."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the disease."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/disease/{diseaseId}": {
+      "get": {
+        "summary": "Get Disease by diseaseId",
+        "description": "Retrieve a disease by its diseaseId.",
+        "parameters": [
+          {
+            "name": "diseaseId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "diseaseId to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Disease retrieved successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "ID of the disease."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the disease."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Disease not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Disease",
+        "description": "Update an existing disease by diseaseId.",
+        "parameters": [
+          {
+            "name": "diseaseId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "diseaseId to update."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "description": "Disease name."
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Disease description."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
+                }
+              },
+              "required": [
+                "Name",
+                "Status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Disease updated successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "ID of the updated disease."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Updated name of the disease."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Disease not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Disease",
+        "description": "Delete a Disease by its ID.",
+        "parameters": [
+          {
+            "name": "diseaseId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the disease to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Disease deleted successfully."
+          },
+          "404": {
+            "description": "Disease not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/product": {
       "post": {
         "summary": "Create a Product",
@@ -859,6 +1103,143 @@
             "description": "Internal Server Error.",
             "schema": {
               "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/product/{productId}": {
+      "put": {
+        "summary": "Update Product",
+        "description": "Update an existing product by its ID.",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the product to update."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "description": "Product name."
+                },
+                "Type": {
+                  "type": "string",
+                  "description": "product Type name."
+                },
+                "Category": {
+                  "type": "string",
+                  "description": "product Category."
+                },
+                "Subcategory": {
+                  "type": "string",
+                  "description": "product Subcategory."
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "product Description."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
+                }
+              },
+              "required": [
+                "Name",
+                "Status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product updated successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "ID of the updated Product."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Updated name of the Product."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Product Season",
+        "description": "Delete a Product by its ID.",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the Product to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Product deleted successfully."
+          },
+          "404": {
+            "description": "Product not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
             }
           }
         }

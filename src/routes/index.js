@@ -3,15 +3,15 @@ const router = express.Router();
 
 const countryRoutes = require('./countryRoutes');
 const productRoutes = require('./productRoutes');
-const seasonRoutes = require("./seasonRoutes");
-const diseaseRoutes = require("./diseaseRoutes");
+const seasonRoutes = require('./seasonRoutes');
+const diseaseRoutes = require('./diseaseRoutes');
 
-const authRoutes = require("./authRoutes");
-const publicProductRoutes = require("./publicProductRoutes");
-const publicCountryRoutes = require("./publicCountryRoutes");
-const publicSeasonRoutes = require("./publicSeasonRoutes");
+const authRoutes = require('./authRoutes');
+const publicProductRoutes = require('./publicProductRoutes');
+const publicCountryRoutes = require('./publicCountryRoutes');
+const publicSeasonRoutes = require('./publicSeasonRoutes');
 
-const authentication = require('./../infrastructure/middlewares/authenticatation');
+const authentication = require('../infrastructure/middlewares/authenticatation');
 
 module.exports = (controllers) => {
     router.use('/api', (req, res, next) => {
@@ -31,6 +31,6 @@ module.exports = (controllers) => {
     router.use('/public/api/product', publicProductRoutes(controllers.productController));
     router.use('/public/api/country', publicCountryRoutes(controllers.countryController));
     router.use('/public/api/season', publicSeasonRoutes(controllers.seasonController));
+
     return router;
 };
-
