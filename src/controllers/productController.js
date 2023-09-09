@@ -115,7 +115,7 @@ class ProductController {
 
     async deleteProductSeason(req, res) {
         try {
-            const productSeasonId = req.params.productSeasonId;
+            const productSeasonId = parseInt(req.params.productSeasonId);
             const isDeleted = await this.productService.deleteProductSeason(productSeasonId);
             if (isDeleted) {
                 res.status(204).send();

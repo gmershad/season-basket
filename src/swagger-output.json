@@ -1351,6 +1351,127 @@
         }
       }
     },
+    "/api/product/season/{productSeasonId}": {
+      "put": {
+        "summary": "Update Product Season",
+        "description": "Update an existing Update Product Season by productSeasonId.",
+        "parameters": [
+          {
+            "name": "productSeasonId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the product season to update."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "SeasonId"
+                },
+                "StateId": {
+                  "type": "integer",
+                  "description": "StateId"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "IsActive true or false"
+                }
+              },
+              "required": [
+                "SeasonId",
+                "Status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product season updated successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ProductSeasonId": {
+                  "type": "integer",
+                  "description": "ID of the updated Product season."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product season not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Product Season",
+        "description": "Delete a Product season by ProductSeasonId.",
+        "parameters": [
+          {
+            "name": "productSeasonId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ProductSeasonId  of the Product season to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Product season deleted successfully."
+          },
+          "404": {
+            "description": "Product Season not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/*": {
       "parameters": [
         {
