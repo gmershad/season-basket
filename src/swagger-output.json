@@ -1,0 +1,411 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Season Basket",
+    "description": ""
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "paths": {
+    "/public/api/auth/login": {
+      "post": {
+        "summary": "User Login",
+        "description": "Authenticate a user and return an access token.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Email": {
+                  "type": "string",
+                  "description": "User's email address."
+                },
+                "Password": {
+                  "type": "string",
+                  "description": "User's password."
+                }
+              },
+              "required": [
+                "Email",
+                "Password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User authenticated successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "description": "Access token for the authenticated user."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "msg": {
+                        "type": "string",
+                        "description": "Error message."
+                      },
+                      "param": {
+                        "type": "string",
+                        "description": "Parameter with the error."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication failed.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/public/api/auth/register": {
+      "post": {
+        "summary": "User Registration",
+        "description": "Register a new user and await activation by the admin.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "FirstName": {
+                  "type": "string",
+                  "description": "User's first name."
+                },
+                "LastName": {
+                  "type": "string",
+                  "description": "User's last name."
+                },
+                "Email": {
+                  "type": "string",
+                  "description": "User's email address."
+                },
+                "Password": {
+                  "type": "string",
+                  "description": "User's password."
+                }
+              },
+              "required": [
+                "FirstName",
+                "LastName",
+                "Email",
+                "Password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User registered successfully. Contact Admin to activate.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Success message."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "msg": {
+                        "type": "string",
+                        "description": "Error message."
+                      },
+                      "param": {
+                        "type": "string",
+                        "description": "Parameter with the error."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/country": {
+      "post": {
+        "summary": "Create a Country",
+        "description": "Create a new country.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CountryCode": {
+                  "type": "string",
+                  "description": "Country code."
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Country name."
+                }
+              },
+              "required": [
+                "CountryCode",
+                "Name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Country created successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get All Countries",
+        "description": "Get a list of all countries.",
+        "responses": {
+          "200": {
+            "description": "Countries retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/country/{countryId}": {
+      "get": {
+        "summary": "Get Country by ID",
+        "description": "Get a country by its ID.",
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Country retrieved successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Country not found.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Country",
+        "description": "Update a country by its ID.",
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Country updated successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Country not found.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Country",
+        "description": "Delete a country by its ID.",
+        "parameters": [
+          {
+            "name": "countryId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Country deleted successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Country not found.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/country/state": {
+      "post": {
+        "summary": "Create a State",
+        "description": "Create a new state for a country.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "State created successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/*": {
+      "parameters": [
+        {
+          "name": "Authorization",
+          "in": "header",
+          "required": true,
+          "type": "string",
+          "description": "Bearer token for authorization."
+        }
+      ]
+    }
+  }
+}

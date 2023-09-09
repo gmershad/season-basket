@@ -5,6 +5,8 @@ const dbConnect = require('./infrastructure/database');
 const compression = require("compression");
 const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger-output.json');
 
 async function createApp() {
     try {
@@ -12,6 +14,7 @@ async function createApp() {
         //await dbConnect.sync({ alter: true });
         await dbConnect.sync();
         const app = express();
+        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
         //app.use(cookieParser());
         // const csrfProtection = csrf({ cookie: true });
         // app.use(csrfProtection);
