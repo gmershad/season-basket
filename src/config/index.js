@@ -14,4 +14,5 @@ module.exports = {
     DB_USER: process.env.DB_USER || "admin_user",
     DB_PASSWORD: process.env.DB_PASSWORD || "P0i9Ct5Zw3TEz+w2d1q",
     DB_DATABASE: process.env.DB_PORT || "season_basket",
+    SECRET_KEY: process.env.SECRET_KEY || "seasonbasket456"
 };

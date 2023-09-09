@@ -9,5 +9,6 @@ module.exports = {
     ProductHealth: require('./productHealth'),
     ProductImage: require("./productImage"),
     Disease: require("./disease"),
-    ProductDisease: require("./productDisease")
+    ProductDisease: require("./productDisease"),
+    User: require("./user")
 }

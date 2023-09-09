@@ -12,9 +12,9 @@ async function createApp() {
         //await dbConnect.sync({ alter: true });
         await dbConnect.sync();
         const app = express();
-        app.use(cookieParser());
-        const csrfProtection = csrf({ cookie: true });
-        app.use(csrfProtection);
+        //app.use(cookieParser());
+        // const csrfProtection = csrf({ cookie: true });
+        // app.use(csrfProtection);
         app.use(compression());
         await expressApp(app);
         app.use((req, res, next) => { res.locals.csrfToken = req.csrfToken(); next(); });
