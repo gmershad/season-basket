@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (countryController) => {
-    router.route('/')
-        .post(countryController.createCountry.bind(countryController))
-        .get(countryController.getAllCountries.bind(countryController));
+    router.route('/').post(countryController.createCountry.bind(countryController));
 
     router.route('/:countryId')
         .get(countryController.getCountryById.bind(countryController))

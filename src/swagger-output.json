@@ -195,6 +195,29 @@
         "security": []
       }
     },
+    "/public/api/country": {
+      "get": {
+        "summary": "Get All Countries",
+        "description": "Get a list of all countries.",
+        "responses": {
+          "200": {
+            "description": "Countries retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
     "/api/country": {
       "post": {
         "summary": "Create a Country",
@@ -232,27 +255,6 @@
             "description": "Country created successfully.",
             "schema": {
               "type": "object"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error.",
-            "schema": {
-              "type": "object"
-            }
-          }
-        }
-      },
-      "get": {
-        "summary": "Get All Countries",
-        "description": "Get a list of all countries.",
-        "responses": {
-          "200": {
-            "description": "Countries retrieved successfully.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
             }
           },
           "500": {

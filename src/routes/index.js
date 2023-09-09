@@ -7,6 +7,8 @@ const seasonRoutes = require("./seasonRoutes");
 const diseaseRoutes = require("./diseaseRoutes");
 const authRoutes = require("./authRoutes");
 const publicProductRoutes = require("./publicProductRoutes");
+const publicCountryRoutes = require("./publicCountryRoutes");
+
 const authentication = require('./../infrastructure/middlewares/authenticatation');
 
 module.exports = (controllers) => {
@@ -24,6 +26,7 @@ module.exports = (controllers) => {
     router.use('/api/disease', diseaseRoutes(controllers.diseaseController));
 
     router.use('/public/api/product', publicProductRoutes(controllers.productController));
+    router.use('/public/api/country', publicCountryRoutes(controllers.countryController));
     router.use('/public/api/auth', authRoutes(controllers.authController));
     return router;
 };
