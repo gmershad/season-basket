@@ -40,11 +40,8 @@ class SeasonRepository {
                 }
             );
 
-            if (updatedRowsCount === 0) {
-                return null;
-            }
-
-            return updatedSeasons[0];
+            const season = await Season.findByPk(seasonId);
+            return season;
         } catch (error) {
             throw error;
         }

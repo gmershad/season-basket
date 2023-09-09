@@ -42,7 +42,7 @@ class SeasonController {
 
     async updateSeason(req, res) {
         try {
-            const seasonId = req.params.seasonId;
+            const seasonId = parseInt(req.params.seasonId);
             const updates = req.body;
             const updatedSeason = await this.seasonService.updateSeason(seasonId, updates);
             if (!updatedSeason) {

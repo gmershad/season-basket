@@ -517,6 +517,287 @@
         }
       }
     },
+    "/api/season": {
+      "post": {
+        "summary": "Create a Season",
+        "description": "Create a new season.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "description": "Season name."
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Season description name."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
+                }
+              },
+              "required": [
+                "Name",
+                "Status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Season created successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "ID of the created season."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the season."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get All Seasons",
+        "description": "Retrieve all seasons.",
+        "responses": {
+          "200": {
+            "description": "Seasons retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "SeasonId": {
+                    "type": "integer",
+                    "description": "ID of the season."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the season."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/season/{seasonId}": {
+      "get": {
+        "summary": "Get Season by ID",
+        "description": "Retrieve a season by its ID.",
+        "parameters": [
+          {
+            "name": "seasonId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the season to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Season retrieved successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "ID of the season."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the season."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Season not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Season",
+        "description": "Update an existing season by its ID.",
+        "parameters": [
+          {
+            "name": "seasonId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the season to update."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "description": "Season name."
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Season description name."
+                },
+                "Status": {
+                  "type": "boolean",
+                  "description": "Status true or false"
+                }
+              },
+              "required": [
+                "Name",
+                "Status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Season updated successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "SeasonId": {
+                  "type": "integer",
+                  "description": "ID of the updated season."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Updated name of the season."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Season not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Season",
+        "description": "Delete a season by its ID.",
+        "parameters": [
+          {
+            "name": "seasonId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID of the season to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Season deleted successfully."
+          },
+          "404": {
+            "description": "Season not found.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/*": {
       "parameters": [
         {
