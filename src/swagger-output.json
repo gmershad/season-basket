@@ -579,43 +579,6 @@
             }
           }
         }
-      },
-      "get": {
-        "summary": "Get All Seasons",
-        "description": "Retrieve all seasons.",
-        "responses": {
-          "200": {
-            "description": "Seasons retrieved successfully.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "SeasonId": {
-                    "type": "integer",
-                    "description": "ID of the season."
-                  },
-                  "name": {
-                    "type": "string",
-                    "description": "Name of the season."
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "error": {
-                  "type": "string",
-                  "description": "Error message."
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/season/{seasonId}": {
@@ -779,6 +742,45 @@
                 "error": {
                   "type": "string",
                   "description": "Error message."
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/api/season": {
+      "get": {
+        "summary": "Get All Seasons",
+        "description": "Retrieve all seasons.",
+        "responses": {
+          "200": {
+            "description": "Seasons retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "SeasonId": {
+                    "type": "integer",
+                    "description": "ID of the season."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the season."
+                  }
                 }
               }
             }
