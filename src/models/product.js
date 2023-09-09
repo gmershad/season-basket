@@ -25,10 +25,6 @@ const Product = sequelize.define('Product', {
         type: DataTypes.STRING(255),
         allowNull: false,
     },
-    // ImgUrls: {
-    //     type: DataTypes.JSON,
-    //     allowNull: false,
-    // },
     IsActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

@@ -275,7 +275,6 @@ class ProductController {
         }
     }
 
-
     async createProductDisease(req, res) {
         try {
             const data = req.body;

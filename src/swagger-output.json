@@ -798,6 +798,70 @@
         }
       }
     },
+    "/api/product": {
+      "post": {
+        "summary": "Create a Product",
+        "description": "Create a new product.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "description": "Product name."
+                },
+                "Type": {
+                  "type": "string",
+                  "description": "Product type"
+                },
+                "Category": {
+                  "type": "string",
+                  "description": "Product category"
+                },
+                "Subcategory": {
+                  "type": "string",
+                  "description": "Product subcategory"
+                },
+                "Description": {
+                  "type": "string",
+                  "description": "Product description"
+                },
+                "IsActive": {
+                  "type": "boolean",
+                  "description": "Product IsActive"
+                }
+              },
+              "required": [
+                "Name",
+                "Type",
+                "Category",
+                "Subcategory",
+                "Description",
+                "IsActive"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Country created successfully.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error.",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
     "/api/*": {
       "parameters": [
         {
