@@ -67,7 +67,8 @@ class ProductController {
         try {
             const pageNumber = parseInt(req.params.pageNumber);
             const pageSize = parseInt(req.params.pageSize);
-            const products = await this.productService.getPaginatedProductDetails(pageNumber, pageSize);
+            const seasonId = parseInt(req.params.seasonId);
+            const products = await this.productService.getPaginatedProductDetails(pageNumber, pageSize, seasonId);
             res.json(products);
         } catch (error) {
             console.error('Error retrieving products:', error);

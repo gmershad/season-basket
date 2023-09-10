@@ -49,8 +49,8 @@ class ProductService {
         return product;
     }
 
-    async getPaginatedProductDetails(pageNumber, pageSize) {
-        const products = await this.productDetailAggregate.getPaginatedProductDetails(pageNumber, pageSize);
+    async getPaginatedProductDetails(pageNumber, pageSize, seasonId) {
+        const products = await this.productDetailAggregate.getPaginatedProductDetails(pageNumber, pageSize, seasonId);
         return products;
     }
 
