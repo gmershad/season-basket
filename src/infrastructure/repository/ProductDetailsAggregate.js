@@ -78,7 +78,7 @@ class ProductDetailsAggregate {
 
     async getProductDetails(productId) {
         try {
-            const excludeAttributes = ['Description', 'CreatedAt', 'UpdatedAt'];
+            const excludeAttributes = ['CreatedAt', 'UpdatedAt'];
 
             const product = await Product.findByPk(productId, {
                 attributes: { exclude: excludeAttributes },
