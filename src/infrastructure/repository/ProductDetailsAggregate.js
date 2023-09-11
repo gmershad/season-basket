@@ -1,4 +1,5 @@
-const { Product, ProductSeason, ProductHealth, ProductNutrition, ProductImage, ProductDisease, Season, Disease } = require('../../models');
+const { Product, ProductSeason, ProductHealth, ProductNutrition, ProductImage, ProductDisease, Season,
+    Disease } = require('../../models');
 
 class ProductDetailsAggregate {
     constructor() {
@@ -136,6 +137,7 @@ class ProductDetailsAggregate {
             throw new Error(`Error retrieving product details: ${error.message}`);
         }
     }
+
 }
 
 module.exports = ProductDetailsAggregate;

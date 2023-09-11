@@ -1,5 +1,6 @@
 const { Product, ProductSeason, ProductNutrition, ProductHealth, ProductImage, ProductDisease }
     = require('../../models');
+const { Op } = require('sequelize');
 
 class ProductRepository {
     async createProduct(productData) {
@@ -276,6 +277,25 @@ class ProductRepository {
             const updatedProductDisease = await ProductDisease.findByPk(productDiseaseId);
             return updatedProductDisease;
         } catch (error) {
+            throw error;
+        }
+    }
+
+    async getProductHints(searchText) {
+        try {
+            const hints = await Product.findAll({
+                attributes: ['Name', 'ProductId'],
+                where: {
+                    Name: {
+                        [Op.like]: `${searchText}%`
+                    },
+                },
+                limit: 10,
+            });
+
+            return hints;
+        } catch (error) {
+            console.error('Error fetching product hints:', error);
             throw error;
         }
     }

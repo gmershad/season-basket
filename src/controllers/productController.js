@@ -320,6 +320,17 @@ class ProductController {
             res.status(500).json({ error: 'Unable to update product disease' });
         }
     }
+
+    async getProductHints(req, res) {
+        try {
+            const searchText = req.params.searchText;
+            const hints = await this.productService.getProductHints(searchText);
+            res.status(200).json({ hints });
+        } catch (error) {
+            console.error('Error fetching product hints:', error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    }
 }
 
 module.exports = ProductController;

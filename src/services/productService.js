@@ -178,6 +178,11 @@ class ProductService {
         const result = await this.productRepository.updateProductDisease(productDiseaseId, updatedData);
         return result;
     }
+
+    async getProductHints(searchText) {
+        const result = await this.productRepository.getProductHints(searchText);
+        return result;
+    }
 }
 
 module.exports = ProductService;
