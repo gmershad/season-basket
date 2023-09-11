@@ -290,7 +290,7 @@ class ProductRepository {
                         [Op.like]: `${searchText}%`
                     },
                 },
-                limit: 10,
+                limit: 10
             });
 
             return hints;
