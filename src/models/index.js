@@ -11,6 +11,7 @@ module.exports = {
     Disease: require("./disease"),
     ProductDisease: require("./productDisease"),
     User: require("./user"),
+    NutrientCategory: require("./nutrientCategory"),
     Nutrient: require("./nutrient"),
     ProductNutrient: require("./productNutrient")
 }

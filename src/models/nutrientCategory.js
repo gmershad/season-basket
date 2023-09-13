@@ -1,32 +1,15 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../infrastructure/database');
-const NutrientCategory = require("./nutrientCategory");
 
-const Nutrient = sequelize.define('Nutrient', {
-    NutrientId: {
+const NutrientCategory = sequelize.define('NutrientCategory', {
+    NutrientCategoryId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    NutrientName: {
+    NutrientCategoryName: {
         type: DataTypes.STRING(255),
         allowNull: false,
-    },
-    Serving: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    Unit: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-    },
-    NutrientCategoryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: NutrientCategory,
-            key: 'nutrient_category_id',
-        },
     },
     IsActive: {
         type: DataTypes.BOOLEAN,
@@ -42,9 +25,9 @@ const Nutrient = sequelize.define('Nutrient', {
         onUpdate: DataTypes.NOW,
     },
 }, {
-    tableName: 'nutrient',
+    tableName: 'nutrient_category',
     timestamps: false,
     underscored: true,
 });
 
-module.exports = Nutrient;
+module.exports = NutrientCategory;
