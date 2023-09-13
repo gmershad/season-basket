@@ -17,7 +17,7 @@ module.exports = async (app) => {
     );
     const limiter = rateLimit({
         windowMs: 1 * 60 * 1000, // 1 minute
-        max: 20,
+        max: 100,
     });
 
     app.use(limiter);
