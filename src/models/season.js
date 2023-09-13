@@ -14,6 +14,9 @@ const Season = sequelize.define('Season', {
     Description: {
         type: DataTypes.STRING(255),
     },
+    SeasonCode: {
+        type: DataTypes.INTEGER
+    },
     IsActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
