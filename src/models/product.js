@@ -22,7 +22,7 @@ const Product = sequelize.define('Product', {
         type: DataTypes.STRING(50),
     },
     Description: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING(500),
         allowNull: false,
     },
     IsActive: {

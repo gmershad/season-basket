@@ -11,7 +11,7 @@ const swaggerFile = require('./swagger-output.json');
 async function createApp() {
     try {
         await dbConnect.authenticate();
-        //await dbConnect.sync({ alter: true });
+        // await dbConnect.sync({ alter: true });
         await dbConnect.sync();
         const app = express();
         app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
